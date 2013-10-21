@@ -1,0 +1,17 @@
+<% provide(:title, @project.name) %>
+<div class="row">
+  
+    <div class="span12">
+        <section>
+  		    <h1><%= @project.name %></h1>
+
+  		    <!-- <p><%= Faker::Lorem.sentence(10) %></p> -->
+
+  		    <h3>Milestones</h3>
+  		    <ul class="milestones">
+                <%= render @milestones %>
+            </ul>
+        </section>
+    
+  </div>
+</div>

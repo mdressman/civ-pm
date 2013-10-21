@@ -1,0 +1,8 @@
+<li>
+	<%= check_box_tag 'milestone_ids[]', milestone.id %>
+	<%= link_to milestone.name, project_milestone_path(milestone.project_id, milestone) %> 
+	<% if milestone.deadline? %>
+		| Deadline: <%= time_tag(milestone.deadline) %>
+		| aka <strong><%= distance_of_time_in_words_to_now(milestone.deadline) %></strong> from now
+	<% end %>
+</li>
