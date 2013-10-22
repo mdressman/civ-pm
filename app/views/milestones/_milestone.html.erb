@@ -2,7 +2,7 @@
 	<%= link_to milestone.name, milestone %> 
 	<% if milestone.deadline? %>
 		| <%= time_tag(milestone.deadline) %> |
-		<% if milestone.deadline <= DateTime.now %>upcoming: 
+		<% if milestone.deadline >= DateTime.now %>upcoming: 
 		<% else %>overdue: 
 		<% end %>
 		<strong><%= distance_of_time_in_words_to_now(milestone.deadline) %></strong>

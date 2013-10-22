@@ -1,8 +1,8 @@
 <li>
-	<%= link_to checkpoint.name, milestone_checkpoint_path(@milestone, checkpoint) %> 
+	<%= link_to checkpoint.name, milestone_checkpoint_path(checkpoint.milestone_id, checkpoint) %> 
 	<% if checkpoint.end? %>
 		| <%= time_tag(checkpoint.end) %> |
-		<% if checkpoint.end <= DateTime.now %>upcoming: 
+		<% if checkpoint.end >= DateTime.now %>upcoming: 
 		<% else %>overdue: 
 		<% end %>
 		<strong><%= distance_of_time_in_words_to_now(checkpoint.end) %></strong>

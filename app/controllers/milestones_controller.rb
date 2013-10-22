@@ -10,7 +10,8 @@ class MilestonesController < ApplicationController
   		flash[:success] = "New milestone created."
   		# redirect_to project_milestone_path(@project, @milestone)
       # redirect_to @project#index
-      @milestone.checkpoints.create("name" => "Internal Review")
+      @milestone.checkpoints.create("name" => "Internal Review", "end" => @milestone.deadline - 3.days)
+      @milestone.checkpoints.create("name" => "Refinements", "start" => @milestone.deadline - 2.days, "end" => @milestone.deadline - 1.day)
       redirect_to milestones_url
   	else
   		render 'new'

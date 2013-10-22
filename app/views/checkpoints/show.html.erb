@@ -1,0 +1,20 @@
+<% provide(:title, @checkpoint.name) %>
+<div class="row">
+  
+  <div class="span12">
+  	<section>
+  		<h1><%= @checkpoint.name %></h1>
+
+  		<%= link_to "delete", milestone_checkpoint_path(@checkpoint.milestone_id, @checkpoint),
+                    method: :delete, 
+  									data: { confirm: "You sure?" }, 
+  									title: @checkpoint.name %>
+
+  		<p>Project: <%= Project.find_by(:id, @checkpoint.milestone.project_id) %></p>
+      <p>Milestone: <%= Milestone.find_by(:id, @checkpoint.milestone_id) %></p>
+  		<p>Start: <%= @checkpoint.start %></p>
+      <p>End: <%= @checkpoint.end %></p>
+  	</section>
+    
+  </div>
+</div>

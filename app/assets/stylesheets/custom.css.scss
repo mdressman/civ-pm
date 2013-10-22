@@ -202,7 +202,11 @@ footer {
 }
 
 .checkpoints {
-    margin-left: 20px
+    margin-left: 20px;
+    li:last-child {
+        padding-bottom:0;
+    }
+
 }
 
 .small-link {
