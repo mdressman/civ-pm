@@ -188,7 +188,7 @@ footer {
 
 /* Projects */
 
-.projects {
+.projects, .milestones {
     list-style: none;
     margin: 0;
     li {
@@ -201,11 +201,16 @@ footer {
     }
 }
 
+.checkpoints {
+    margin-left: 20px
+}
+
 .small-link {
     font-size: 12px;
 }
 
 .milestones {
+    margin-left: 20px;
     li {
         border-top: none;
         &:last-child {

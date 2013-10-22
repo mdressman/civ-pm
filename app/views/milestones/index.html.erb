@@ -1,10 +1,8 @@
-<% provide(:title, @project.name + ' Milestones') %>
-<h1><%= @project.name %> Milestones</h1>
+<% provide(:title, 'Milestones') %>
+<h1>Milestones</h1>
+
+<h2><%= link_to "New Milestone", new_milestone_path %></h2>
 
 <ul class="milestones">
 	<%= render @milestones %>
 </ul>
-
-<%= calendar Milestone.find_by(:project_id, @project.id) do |milestone| %>
-            <div><%= link_to milestone.name, milestone %></div>
-        <% end %>

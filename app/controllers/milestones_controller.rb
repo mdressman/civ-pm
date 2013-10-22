@@ -1,10 +1,6 @@
 class MilestonesController < ApplicationController
-  before_action :set_project
-  
-  before_action :set_milestone, only: [:show]
 
   def new
-  	@project = Project.find(params[:project_id])
     @milestone = Milestone.new
   end
 
@@ -13,7 +9,9 @@ class MilestonesController < ApplicationController
   	if @milestone.save 
   		flash[:success] = "New milestone created."
   		# redirect_to project_milestone_path(@project, @milestone)
-      redirect_to @project#index
+      # redirect_to @project#index
+      @milestone.checkpoints.create("name" => "Internal Review")
+      redirect_to milestones_url
   	else
   		render 'new'
   	end
@@ -38,8 +36,7 @@ class MilestonesController < ApplicationController
   end
 
   def index
-    # @milestones = Milestone.find_by(:project_id, params[:project_id])
-    @milestones = @project.milestones
+    @milestones = Milestone.all.order(:deadline)
 
   end
 
@@ -50,14 +47,6 @@ class MilestonesController < ApplicationController
   private
 
   	def milestone_params
-  		params.require(:milestone).permit(:name, :deadline, :user_id, :estimate).merge(:project_id => params[:project_id])
+  		params.require(:milestone).permit(:name, :deadline, :user_id, :estimate, :project_id, :milestone_type)
   	end
-
-    def set_milestone
-      @milestone = Milestone.find(params[:id])
-    end
-
-    def set_project 
-      @project = Project.find(params[:project_id])
-    end
 end

@@ -1,7 +1,6 @@
 <li>
-	<h3><%= link_to project.name, project %> <span class="small-link"> | <%= link_to "New Milestone", new_project_milestone_path(project) %></span></h3>
-	<!--  | <%= link_to("View Project Milestones", project_milestones_path(project)) %> -->
+	<h3><%= link_to project.name, project %> <span class="small-link"> | <%= link_to "New Milestone", new_milestone_path %></span></h3>
 	<ul class="milestones">
-	    <%= render project.milestones %>
+	    <%= render project.milestones.order(:deadline) %>
 	</ul>
 </li>

@@ -1,7 +1,5 @@
 class Milestone < ActiveRecord::Base
-
- 	def start_time
-    	deadline
-  	end
-
+	has_many :checkpoints, dependent: :destroy
+	belongs_to :project
+	validates :name, presence: true
 end

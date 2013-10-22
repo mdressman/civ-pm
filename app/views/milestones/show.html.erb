@@ -5,8 +5,13 @@
   	<section>
   		<h1><%= @milestone.name %></h1>
 
+  		<%= link_to "delete", @milestone, method: :delete, 
+  									 data: { confirm: "You sure?" }, 
+  									 title: @milestone.name %>
+
   		<p><%= @milestone.project_id %></p>
   		<p><%= @milestone.deadline %></p>
+  		<p><%= @milestone.milestone_type %></p>
   	</section>
     
   </div>
