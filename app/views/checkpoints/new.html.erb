@@ -3,11 +3,11 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for([@milestone, @checkpoint]) do |f| %>
+    <%= form_for ([@milestone, @checkpoint]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <h2>Project: <%= Project.find_by(:id, @checkpoint.milestone.project_id) %></h2>
-      <h2>Milestone: <%= Milestone.find_by(:id, @checkpoint.milestone_id) %></h2>
+      <h2>Project: <%= @milestone.project.name %></h2>
+      <h2>Milestone: <%= @milestone.name %></h2>
 
       <%= f.label :name %>
       <%= f.text_field :name %>

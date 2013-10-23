@@ -1,7 +1,8 @@
 class CheckpointsController < ApplicationController
-	before_action :set_milestone
+	# before_action :set_milestone
   
   def new
+    @milestone = Milestone.find_by(params[:milestone_id])
     @checkpoint = Checkpoint.new
   end
 
@@ -50,8 +51,8 @@ class CheckpointsController < ApplicationController
   		params.require(:checkpoint).permit(:name, :start, :end).merge(:milestone_id, params[:milestone_id])
   	end
 
-  	def set_milestone
-  		@milestone = Milestone.find_by(:id, params[:milestone_id])
-  	end
+  	# def set_milestone
+  	# 	@milestone = Milestone.find_by(:id, params[:milestone_id])
+  	# end
 
 end

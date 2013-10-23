@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Milestone do
-  pending "add some examples to (or delete) #{__FILE__}"
+	let(:user) { FactoryGirl.create(:user) }
+	before { 20.times { FactoryGirl.create(:milestone) } }
 end
