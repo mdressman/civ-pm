@@ -1,6 +1,8 @@
 <li>
-	<h3><%= link_to project.name, project %> <span class="small-link"> | <%= link_to "New Milestone", new_milestone_path %></span></h3>
+	<h3><%= link_to project.name, project %> 
+		<span class="small-link"> | <%= link_to "New Milestone", new_milestone_path %></span>
+	</h3>
 	<ul class="milestones">
-	    <%= render project.milestones.order(:deadline) %>
+	    <%= render project.milestones.order(:end) %>
 	</ul>
 </li>

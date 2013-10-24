@@ -7,7 +7,8 @@ class CheckpointsController < ApplicationController
   end
 
   def create
-  	@checkpoint = Checkpoint.new(checkpoint_params)
+  	@milestone = Milestone.find_by(params[:milestone_id])
+    @checkpoint = Checkpoint.new(checkpoint_params)
   	if @checkpoint.save 
   		flash[:success] = "New checkpoint created."
   		redirect_to milestone_checkpoint_path(@milestone, @checkpoint)
@@ -42,13 +43,14 @@ class CheckpointsController < ApplicationController
   end
 
   def show
-  	@checkpoint = Checkpoint.find(params[:id])
+  	@milestone = Milestone.find_by(params[:milestone_id])
+    @checkpoint = Checkpoint.find(params[:id])
   end
 
   private
 
   	def checkpoint_params
-  		params.require(:checkpoint).permit(:name, :start, :end).merge(:milestone_id, params[:milestone_id])
+  		params.require(:checkpoint).permit(:name, :start, :end, :esimate, :user_id, :milestone_id)
   	end
 
   	# def set_milestone

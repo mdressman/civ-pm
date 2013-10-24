@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     before_action :admin_user,     only: :destroy
 
   	def show
-        @user = User.find(params[:id])
+      @user = User.find(params[:id])
   	end
 
   	def index
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   	  	if @user.save 
   	  		sign_in @user
   	  		flash[:success] = "Welcome to Civilization!"
-  	  		redirect_to @user
+  	  		redirect_to projects_url
   	  	else
   	  		render 'new'
   	  	end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 	def update
 		if @user.update_attributes(user_params)
 			flash[:success] = "Profile updated"
-			redirect_to @user
+			redirect_to projects_url
 		else
 			render 'edit'
 		end

@@ -17,7 +17,7 @@ FactoryGirl.define do
 	factory :milestone do
 		sequence(:name) { |n| "Milestone #{n}" }
 		rand_time = rand(-7..7)
-		deadline { rand_time.days.from_now }
+		end { rand_time.days.from_now }
 	end
 
 end

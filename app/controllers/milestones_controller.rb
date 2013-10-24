@@ -34,7 +34,7 @@ class MilestonesController < ApplicationController
     end
 
     def index
-        @milestones = Milestone.all.order(:deadline)
+        @milestones = Milestone.all.order(:end)
     end
 
     def show
@@ -45,19 +45,19 @@ class MilestonesController < ApplicationController
     private
 
         def milestone_params
-  		    params.require(:milestone).permit(:name, :deadline, :user_id, :estimate, :project_id, :milestone_type)
+  		    params.require(:milestone).permit(:name, :start, :end, :estimate, :user_id, :project_id, :milestone_type)
         end
 
         def create_checkpoints
-            if @milestone.deadline
+            if @milestone.end
                 case @milestone.milestone_type
                 when "design_print"
-                    @milestone.checkpoints.create("name" => "Internal Review", "end" => @milestone.deadline - 3.days)
-                    @milestone.checkpoints.create("name" => "Refinements", "start" => @milestone.deadline - 2.days, "end" => @milestone.deadline - 1.day)
+                    @milestone.checkpoints.create("name" => "Internal Review", "end" => @milestone.end - 3.days)
+                    @milestone.checkpoints.create("name" => "Refinements", "start" => @milestone.end - 2.days, "end" => @milestone.end - 1.day)
                 when "dev_web"
-                    @milestone.checkpoints.create("name" => "Set up framework", "end" => @milestone.deadline - 30.days)
-                    @milestone.checkpoints.create("name" => "Set up staging site", "start" => @milestone.deadline - 14.days, "end" => @milestone.deadline - 1.day)
-                    @milestone.checkpoints.create("name" => "Testing", "start" => @milestone.deadline - 7.days, "end" => @milestone.deadline - 1.day)
+                    @milestone.checkpoints.create("name" => "Set up framework", "end" => @milestone.end - 30.days)
+                    @milestone.checkpoints.create("name" => "Set up staging site", "start" => @milestone.end - 14.days, "end" => @milestone.end - 1.day)
+                    @milestone.checkpoints.create("name" => "Testing", "start" => @milestone.end - 7.days, "end" => @milestone.end - 1.day)
                 end
             end
         end

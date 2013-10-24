@@ -1,13 +1,15 @@
 <li>
 	<%= link_to milestone.name, milestone %> 
-	<% if milestone.deadline? %>
-		| <%= time_tag(milestone.deadline) %> |
-		<% if milestone.deadline >= DateTime.now %>upcoming: 
+	<% if milestone.end? %>
+		| <%= time_tag(milestone.end) %> |
+		<% if milestone.end >= DateTime.now %>upcoming: 
 		<% else %>overdue: 
 		<% end %>
-		<strong><%= distance_of_time_in_words_to_now(milestone.deadline) %></strong>
+		<strong><%= distance_of_time_in_words_to_now(milestone.end) %></strong>
+
 
 	<% end %>
+	<span class="small-link"> | <%= link_to "New Checkpoint", new_milestone_checkpoint_path(:milestone_id => milestone.id) %></span>
 
 	<ul class="checkpoints">
 		<%= render milestone.checkpoints %>
