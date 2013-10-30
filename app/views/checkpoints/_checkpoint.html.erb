@@ -1,11 +1,14 @@
-<li>
+<li class="<% if checkpoint.complete? %>complete<% end %>">
+	<%= check_box_tag 'checkpoint_ids[]', checkpoint.id %>
 	<%= link_to checkpoint.name, milestone_checkpoint_path(checkpoint.milestone_id, checkpoint) %> 
 	<% if checkpoint.end? %>
-		| <%= time_tag(checkpoint.end) %> |
-		<% if checkpoint.end >= DateTime.now %>upcoming: 
-		<% else %>overdue: 
+		| <%= checkpoint.end.strftime('%m/%d/%Y') %>
+		<% if !checkpoint.complete %> |
+			<% if checkpoint.end >= DateTime.now %>upcoming: 
+			<% else %>overdue: 
+			<% end %>
+			<strong><%= distance_of_time_in_words_to_now(checkpoint.end) %></strong>
 		<% end %>
-		<strong><%= distance_of_time_in_words_to_now(checkpoint.end) %></strong>
 
 	<% end %>
 </li>

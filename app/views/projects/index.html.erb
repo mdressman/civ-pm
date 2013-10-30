@@ -1,12 +1,13 @@
 <% provide(:title, 'All Projects') %>
 <% if signed_in? %>
-	<h1>All Projects <span class="small-link"> | <%= link_to "New Project", new_project_path %></span></h1>
-
-	<ul class="projects">
+	<h1>10k' View<span class="small-link"> | <%= link_to "New Project", new_project_path, class: "project-button" %></span></h1>
+	
+    <ul class="projects">
 		<%= render @projects %>
 	</ul>
 
 	<%= will_paginate %>
+
 <% else %>
     <div class="center hero-unit">
         <h1>Civilization</h1>

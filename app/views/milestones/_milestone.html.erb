@@ -1,5 +1,6 @@
 <li>
-	<%= link_to milestone.name, milestone %> 
+	<!-- <%= check_box_tag 'milestone_ids[]', milestone.id %> -->
+	<span class="milestone-name"><%= link_to milestone.name, milestone %></span>
 	<% if milestone.end? %>
 		| <%= time_tag(milestone.end) %> |
 		<% if milestone.end >= DateTime.now %>upcoming: 
@@ -9,9 +10,15 @@
 
 
 	<% end %>
-	<span class="small-link"> | <%= link_to "New Checkpoint", new_milestone_checkpoint_path(:milestone_id => milestone.id) %></span>
+	<span class="small-link"> | <%= link_to "New Checkpoint", new_milestone_checkpoint_path(:milestone_id => milestone.id), class: "project-button" %></span>
+
+	<%= form_tag("/milestones/" + milestone.id.to_s + "/checkpoints/complete/") do %>
 
 	<ul class="checkpoints">
 		<%= render milestone.checkpoints %>
 	</ul>
+
+	<%= submit_tag "Mark Complete", class: "project-button" %>
+
+	<% end %>
 </li>

@@ -4,7 +4,11 @@ CivPM::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :projects
   resources :milestones do 
-    resources :checkpoints
+    resources :checkpoints do
+      collection do
+        post :complete
+      end
+    end
   end
   
   root 'projects#index'

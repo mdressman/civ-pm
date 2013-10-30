@@ -56,8 +56,8 @@ class MilestonesController < ApplicationController
                     @milestone.checkpoints.create("name" => "Refinements", "start" => @milestone.end - 2.days, "end" => @milestone.end - 1.day)
                 when "dev_web"
                     @milestone.checkpoints.create("name" => "Set up framework", "end" => @milestone.end - 30.days)
-                    @milestone.checkpoints.create("name" => "Set up staging site", "start" => @milestone.end - 14.days, "end" => @milestone.end - 1.day)
-                    @milestone.checkpoints.create("name" => "Testing", "start" => @milestone.end - 7.days, "end" => @milestone.end - 1.day)
+                    @milestone.checkpoints.create("name" => "Set up staging site", "start" => @milestone.end - 14.days, "end" => @milestone.end - 14.day)
+                    @milestone.checkpoints.create("name" => "Testing", "start" => @milestone.end - 7.days, "end" => @milestone.end - 7.day)
                 end
             end
         end
