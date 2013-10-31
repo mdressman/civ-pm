@@ -1,24 +1,49 @@
-<li>
-	<!-- <%= check_box_tag 'milestone_ids[]', milestone.id %> -->
-	<span class="milestone-name"><%= link_to milestone.name, milestone %></span>
-	<% if milestone.end? %>
-		| <%= time_tag(milestone.end) %> |
+<!-- <%= check_box_tag 'milestone_ids[]', milestone.id %> -->
+<span class="milestone-name"><%= link_to milestone.name, project_milestone_path(milestone.project_id,  milestone) %></span>
+
+<% if milestone.end? %>
+	<span class="milestone-info">
+		| Expected due date: <%= time_tag(milestone.end) %> |
 		<% if milestone.end >= DateTime.now %>upcoming: 
 		<% else %>overdue: 
 		<% end %>
 		<strong><%= distance_of_time_in_words_to_now(milestone.end) %></strong>
+	</span>
+<% end %>
 
 
-	<% end %>
-	<span class="small-link"> | <%= link_to "New Checkpoint", new_milestone_checkpoint_path(:milestone_id => milestone.id), class: "project-button" %></span>
+<div class="row">
+	<div class="span6">
 
-	<%= form_tag("/milestones/" + milestone.id.to_s + "/checkpoints/complete/") do %>
+		<% if milestone.checkpoints.present? %>
+			<%= form_tag("/projects/" + milestone.project_id.to_s + "/milestones/" + milestone.id.to_s + "/checkpoints/complete/") do %>
+			<p class="sub-head">
+				Checkpoints 
+				<span class="small-link">| <%= link_to "New", new_project_milestone_checkpoint_path(:project_id => milestone.project_id, :milestone_id => milestone.id), class: "project-button" %>
+				</span>
+			</p>
+			<ul class="checkpoints">
+				<%= render milestone.checkpoints %>
+			</ul>
+			<%= submit_tag "Mark Complete", class: "project-button" %>
+			<% end %>
+		<% end %>
 
-	<ul class="checkpoints">
-		<%= render milestone.checkpoints %>
-	</ul>
+	</div>
+	<div class="span6">
 
-	<%= submit_tag "Mark Complete", class: "project-button" %>
-
-	<% end %>
-</li>
+		<% if milestone.assets.present? %>
+			<%= form_tag("/projects/" + milestone.project_id.to_s + "/milestones/" + milestone.id.to_s + "/assets/receive/") do %>
+			<p class="sub-head">
+				Assets
+				<span class="small-link">| <%= link_to "New", new_project_milestone_asset_path(:project_id => milestone.project_id, :milestone_id => milestone.id), class: "project-button" %>
+				</span>
+			</p>
+			<ul class="assets">
+				<%= render milestone.assets %>
+			</ul>
+			<%= submit_tag "Mark Received", class: "project-button" %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

@@ -5,7 +5,7 @@
   	<section>
   		<h1><%= @milestone.name %></h1>
 
-  		<%= link_to "delete", @milestone, method: :delete, 
+  		<%= link_to "delete", project_milestone_path, method: :delete, 
   									 data: { confirm: "You sure?" }, 
   									 title: @milestone.name %>
 

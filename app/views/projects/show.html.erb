@@ -5,6 +5,11 @@
         <section>
   		    <h1><%= @project.name %></h1>
 
+          <%= link_to "delete", @project,
+                    method: :delete, 
+                    data: { confirm: "You sure?" }, 
+                    title: @project.name %>
+
   		    <!-- <p><%= Faker::Lorem.sentence(10) %></p> -->
 
   		    <h3>Milestones</h3>

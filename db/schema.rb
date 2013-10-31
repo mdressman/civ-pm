@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030174857) do
+ActiveRecord::Schema.define(version: 20131030194415) do
+
+  create_table "assets", force: true do |t|
+    t.string   "name"
+    t.boolean  "received"
+    t.string   "notes"
+    t.datetime "expected_date"
+    t.datetime "received_date"
+    t.integer  "milestone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "checkpoints", force: true do |t|
     t.string   "name"

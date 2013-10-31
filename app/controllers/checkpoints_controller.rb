@@ -2,11 +2,13 @@ class CheckpointsController < ApplicationController
 	# before_action :set_milestone
   
     def new
+        @project = Project.find_by(params[:project_id])
         @milestone = Milestone.find_by(params[:milestone_id])
         @checkpoint = Checkpoint.new
     end
 
     def create
+        @project = Project.find_by(params[:project_id])
         @milestone = Milestone.find_by(params[:milestone_id])
         @checkpoint = Checkpoint.new(checkpoint_params)
         if @checkpoint.save 
@@ -43,6 +45,7 @@ class CheckpointsController < ApplicationController
 
     def show
         @milestone = Milestone.find_by(params[:milestone_id])
+        @project = Project.find_by(params[:milestone_id])
         @checkpoint = Checkpoint.find(params[:id])
     end
 

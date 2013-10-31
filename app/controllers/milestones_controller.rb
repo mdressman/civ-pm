@@ -1,15 +1,17 @@
 class MilestonesController < ApplicationController
 
     def new
+        @project = Project.find_by(params[:project_id])
         @milestone = Milestone.new
     end
 
     def create
+        @project = Project.find_by(params[:project_id])
         @milestone = Milestone.new(milestone_params)
         if @milestone.save 
   		    flash[:success] = "New milestone created."
             create_checkpoints
-            redirect_to milestones_url
+            redirect_to root_url
         else
   		    render 'new'
         end
@@ -30,7 +32,7 @@ class MilestonesController < ApplicationController
     def destroy
         Milestone.find(params[:id]).destroy
         flash[:success] = "Milestone removed."
-        redirect_to milestones_url
+        redirect_to project_milestones_url
     end
 
     def index

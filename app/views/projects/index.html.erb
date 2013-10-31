@@ -2,9 +2,7 @@
 <% if signed_in? %>
 	<h1>10k' View<span class="small-link"> | <%= link_to "New Project", new_project_path, class: "project-button" %></span></h1>
 	
-    <ul class="projects">
-		<%= render @projects %>
-	</ul>
+    <%= render @projects %>
 
 	<%= will_paginate %>
 

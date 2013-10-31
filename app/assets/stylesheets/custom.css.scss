@@ -49,23 +49,29 @@ h1 {
 }
 
 h2 {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: normal;
-    color: $grayLight;
+    font-size: 2em;
+    margin-bottom: 10px;
 }
 
 p {
     font-size: 1.1em;
     line-height: 1.7em;
+    margin: 0;
 }
 
 a { 
     color: $darkText;
 }
 
+ul {
+    margin: 0;
+}
+
 /* forms */
+
+form {
+    margin: 0;
+}
 
 input, textarea, select, .uneditable-input {
     border: 1px solid #bbb;
@@ -78,7 +84,7 @@ input {
     height: auto !important;
 }
 
-input.project-button {
+.milestones input.project-button {
     margin-left: 20px;
 }
 
@@ -99,7 +105,7 @@ input.project-button {
 
 .field_with_errors {
     @extend .control-group;
-  @extend .error;
+    @extend .error;
 }
 
 
@@ -111,7 +117,7 @@ input.project-button {
     font-size: 1.7em;
     color: white;
     text-transform: uppercase;
-    letter-spacing: -1px;
+    letter-spacing: 1px;
     padding-top: 9px;
     font-weight: bold;
     line-height: 1;
@@ -199,15 +205,30 @@ footer {
 
 /* Projects */
 
-.projects, .milestones {
+.project {
+    border-bottom: 1px solid $grayLight;
+    margin-bottom: 20px; 
+    margin-left: 0;
+
+    &:first-child {
+        border-top: 1px solid $grayLight;
+    }
+}
+
+.checkpoints, .assets {
     list-style: none;
-    margin: 0;
+    margin-left: 20px;
     li {
+        font-size: 12px;
         overflow: auto;
-        padding: 10px 0;
         border-top: 1px solid $grayLighter;
+
         &:last-child {
             border-bottom: 1px solid $grayLighter;
+        }
+
+        &.complete {
+            text-decoration: line-through;
         }
     }
 }
@@ -217,29 +238,18 @@ footer {
     font-size: 16px;
 }
 
-.checkpoints {
-    margin-left: 20px;
-    li {
-        padding-bottom:0;
-
-        &.complete {
-            text-decoration: line-through;
-        }
-    }
-
-}
-
 .small-link {
     font-size: 12px;
 }
 
-.milestones {
-    margin-left: 20px;
-    li {
-        border-top: none;
-        &:last-child {
-            border-bottom: none;
-        }
-    }
+p.sub-head {
+    margin: 4px 0 0 10px;
+    font-style: italic;
+    font-size: 1em;
+    /*font-weight: bold;*/
+}
+
+.milestone-info {
+    font-size: 0.9em;
 }
 

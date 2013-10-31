@@ -1,6 +1,6 @@
 <li class="<% if checkpoint.complete? %>complete<% end %>">
 	<%= check_box_tag 'checkpoint_ids[]', checkpoint.id %>
-	<%= link_to checkpoint.name, milestone_checkpoint_path(checkpoint.milestone_id, checkpoint) %> 
+	<%= link_to checkpoint.name, project_milestone_checkpoint_path(Milestone.find_by(checkpoint.milestone_id).project_id, checkpoint.milestone_id, checkpoint) %> 
 	<% if checkpoint.end? %>
 		| <%= checkpoint.end.strftime('%m/%d/%Y') %>
 		<% if !checkpoint.complete %> |

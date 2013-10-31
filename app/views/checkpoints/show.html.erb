@@ -5,13 +5,13 @@
   	<section>
   		<h1><%= @checkpoint.name %></h1>
 
-  		<%= link_to "delete", milestone_checkpoint_path(@checkpoint.milestone_id, @checkpoint),
+  		<%= link_to "delete", project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint),
                     method: :delete, 
   									data: { confirm: "You sure?" }, 
   									title: @checkpoint.name %>
 
-  		<p>Project: <%= Project.find_by(:id, @milestone.project_id) %></p>
-      <p>Milestone: <%= Milestone.find_by(:id, @checkpoint.milestone_id) %></p>
+  		<p>Project: <%= @project.name %></p>
+      <p>Milestone: <%= @milestone.name %></p>
   		<p>Start: <%= @checkpoint.start %></p>
       <p>End: <%= @checkpoint.end %></p>
   	</section>

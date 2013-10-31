@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   	@project = Project.new(project_params)
   	if @project.save 
   		flash[:success] = "New project created."
-  		redirect_to projects_url
+  		redirect_to new_milestone_path
   	else
   		render 'new'
   	end

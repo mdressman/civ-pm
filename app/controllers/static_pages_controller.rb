@@ -10,5 +10,9 @@ class StaticPagesController < ApplicationController
 	  
 	def contact
 	end	
+
+	def timeline
+		@checkpoints = Checkpoint.all.order(:end)
+	end
   
 end

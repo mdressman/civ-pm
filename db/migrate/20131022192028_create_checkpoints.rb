@@ -10,6 +10,8 @@ class CreateCheckpoints < ActiveRecord::Migration
       t.string :notes
 
       t.timestamps
+
+      add_index :assets, :milestone_id
     end
   end
 end
