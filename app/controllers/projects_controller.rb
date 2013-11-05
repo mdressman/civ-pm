@@ -8,19 +8,20 @@ class ProjectsController < ApplicationController
   	@project = Project.new(project_params)
   	if @project.save 
   		flash[:success] = "New project created."
-  		redirect_to new_milestone_path
+  		redirect_to new_project_milestone_path(:project_id => @project.id)
   	else
   		render 'new'
   	end
   end
 
   def update
-  	if @project.update_attributes(project_params)
-		flash[:success] = "Project updated."
-		redirect_to @project
-	else
-		render 'edit'
-	end
+  	@project = Project.find(params[:id])
+    if @project.update_attributes(project_params)
+		  flash[:success] = "Project updated."
+		  redirect_to root_url
+    else
+		  render 'edit'
+    end
   end
 
   def edit
@@ -30,7 +31,7 @@ class ProjectsController < ApplicationController
   def destroy
   	Project.find(params[:id]).destroy
     flash[:success] = "Project removed."
-    redirect_to projects_url
+    redirect_to root_url
   end
 
   def index

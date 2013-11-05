@@ -1,13 +1,13 @@
 <!-- <%= check_box_tag 'milestone_ids[]', milestone.id %> -->
 <span class="milestone-name"><%= link_to milestone.name, project_milestone_path(milestone.project_id,  milestone) %></span>
 
-<% if milestone.end? %>
+<% if milestone.end_date? %>
 	<span class="milestone-info">
-		| Expected due date: <%= time_tag(milestone.end) %> |
-		<% if milestone.end >= DateTime.now %>upcoming: 
+		| Expected due date: <%= milestone.end_date.strftime('%m/%d/%Y') %> |
+		<% if milestone.end_date >= DateTime.now %>upcoming: 
 		<% else %>overdue: 
 		<% end %>
-		<strong><%= distance_of_time_in_words_to_now(milestone.end) %></strong>
+		<strong><%= distance_of_time_in_words_to_now(milestone.end_date) %></strong>
 	</span>
 <% end %>
 
@@ -15,13 +15,14 @@
 <div class="row">
 	<div class="span6">
 
-		<% if milestone.checkpoints.present? %>
-			<%= form_tag("/projects/" + milestone.project_id.to_s + "/milestones/" + milestone.id.to_s + "/checkpoints/complete/") do %>
-			<p class="sub-head">
+		<p class="sub-head">
 				Checkpoints 
 				<span class="small-link">| <%= link_to "New", new_project_milestone_checkpoint_path(:project_id => milestone.project_id, :milestone_id => milestone.id), class: "project-button" %>
 				</span>
 			</p>
+		<% if milestone.checkpoints.present? %>
+			<%= form_tag("/projects/" + milestone.project_id.to_s + "/milestones/" + milestone.id.to_s + "/checkpoints/complete/") do %>
+			
 			<ul class="checkpoints">
 				<%= render milestone.checkpoints %>
 			</ul>
@@ -32,13 +33,14 @@
 	</div>
 	<div class="span6">
 
-		<% if milestone.assets.present? %>
-			<%= form_tag("/projects/" + milestone.project_id.to_s + "/milestones/" + milestone.id.to_s + "/assets/receive/") do %>
-			<p class="sub-head">
+		<p class="sub-head">
 				Assets
 				<span class="small-link">| <%= link_to "New", new_project_milestone_asset_path(:project_id => milestone.project_id, :milestone_id => milestone.id), class: "project-button" %>
 				</span>
 			</p>
+		<% if milestone.assets.present? %>
+			<%= form_tag("/projects/" + milestone.project_id.to_s + "/milestones/" + milestone.id.to_s + "/assets/receive/") do %>
+			
 			<ul class="assets">
 				<%= render milestone.assets %>
 			</ul>

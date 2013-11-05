@@ -1,38 +1,44 @@
 class AssetsController < ApplicationController
 	def new
-        @project = Project.find_by(params[:project_id])
-        @milestone = Milestone.find_by(params[:milestone_id])
+        @project = Project.find(params[:project_id])
+        @milestone = Milestone.find(params[:milestone_id])
         @asset = Asset.new
     end
 
     def create
-        @project = Project.find_by(params[:project_id])
-        @milestone = Milestone.find_by(params[:milestone_id])
+        @project = Project.find(params[:project_id])
+        @milestone = Milestone.find(params[:milestone_id])
         @asset = Asset.new(asset_params)
         if @asset.save 
   		    flash[:success] = "New asset created."
-  		    redirect_to project_milestone_asset_path(@project, @milestone, @asset)
+  		    redirect_to root_url
         else
   		    render 'new'
         end
     end
 
     def update
+        @project = Project.find(params[:project_id])
+        @milestone = Milestone.find(params[:milestone_id])
+        @asset = Asset.find(params[:id])
         if @asset.update_attributes(asset_params)
             flash[:success] = "Asset updated."
-            redirect_to @asset
+            redirect_to root_url
         else
             render 'edit'
         end
     end
 
     def edit
+        @project = Project.find(params[:project_id])
+        @milestone = Milestone.find(params[:milestone_id])
+        @asset = Asset.find(params[:id])
     end
 
     def destroy
         Asset.find(params[:id]).destroy
         flash[:success] = "Asset removed."
-        redirect_to project_milestone_assets_url
+        redirect_to root_url
     end
 
     def index
@@ -60,7 +66,7 @@ class AssetsController < ApplicationController
     private
 
       	def asset_params
-      		params.require(:asset).permit(:name, :notes, :expected_daet, :received_date, :milestone_id)
+      		params.require(:asset).permit(:name, :notes, :expected_date, :received_date, :milestone_id, :link)
       	end
 
       	# def set_milestone

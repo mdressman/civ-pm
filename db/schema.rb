@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030194415) do
+ActiveRecord::Schema.define(version: 20131104193702) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(version: 20131030194415) do
     t.integer  "milestone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "link"
   end
 
   create_table "checkpoints", force: true do |t|
     t.string   "name"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer  "estimate"
     t.integer  "user_id"
     t.integer  "milestone_id"
@@ -35,12 +36,15 @@ ActiveRecord::Schema.define(version: 20131030194415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "complete",     default: false
+    t.integer  "project_id"
   end
+
+  add_index "checkpoints", ["project_id"], name: "index_checkpoints_on_project_id"
 
   create_table "milestones", force: true do |t|
     t.string   "name"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer  "estimate"
     t.integer  "user_id"
     t.integer  "project_id"

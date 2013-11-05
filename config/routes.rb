@@ -26,6 +26,6 @@ CivPM::Application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/timeline', to: 'static_pages#timeline', via: 'get'
+  match '/calendar', to: 'static_pages#calendar', via: 'get'
 
 end

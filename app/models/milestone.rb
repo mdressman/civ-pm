@@ -3,4 +3,8 @@ class Milestone < ActiveRecord::Base
 	has_many :assets, dependent: :destroy
 	belongs_to :project
 	validates :name, presence: true
+
+	def start_time
+    	end_date
+  	end
 end

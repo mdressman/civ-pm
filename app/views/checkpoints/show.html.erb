@@ -1,20 +1,21 @@
 <% provide(:title, @checkpoint.name) %>
 <div class="row">
   
-  <div class="span12">
-  	<section>
-  		<h1><%= @checkpoint.name %></h1>
+    <div class="span12">
+        <section>
+            <h1>Project: <%= @project.name %></h1>
+            <h1>Milestone: <%= @milestone.name %></h1>
+            <h1>Checkpoint: <%= @checkpoint.name %></h1>
+            
 
-  		<%= link_to "delete", project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint),
-                    method: :delete, 
-  									data: { confirm: "You sure?" }, 
-  									title: @checkpoint.name %>
+            <h3><%= link_to "edit", edit_project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint) %> | 
+            <%= link_to "delete", project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint), method: :delete, 
+  							 data: { confirm: "You sure?" }, 
+  							 title: @checkpoint.name %>
+            </h3>
 
-  		<p>Project: <%= @project.name %></p>
-      <p>Milestone: <%= @milestone.name %></p>
-  		<p>Start: <%= @checkpoint.start %></p>
-      <p>End: <%= @checkpoint.end %></p>
-  	</section>
-    
-  </div>
+            <p>Start: <%= @checkpoint.start_date %></p>
+            <p>End: <%= @checkpoint.end_date %></p>
+        </section>
+    </div>
 </div>
