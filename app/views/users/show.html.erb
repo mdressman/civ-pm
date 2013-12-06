@@ -1,14 +1,18 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="span8">
-      <h3>Foo</h3>
+    <aside class="span4">
+        <section>
+            <h1>
+                <%= @user.name %>
+            </h1>
+        </section>
+    </aside>
+    <div class="span8">
+        
+        <% @user_owns.each do |item| %>
+            <%= item.name %>
+        <% end %>  
+
       
   </div>
 </div>

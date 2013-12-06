@@ -1,18 +1,22 @@
 <% provide(:title, @milestone.name) %>
 <div class="row">
   
-  <div class="span12">
-  	<section>
-  		<h1><%= @milestone.name %></h1>
+    <div class="span12">
+        <section>
+  		    <h1>Project: <%= @project.name %></h1>
+            <h1>Milestone: <%= @milestone.name %></h1>
 
-  		<%= link_to "delete", project_milestone_path, method: :delete, 
+  		    <h3>
+                <%= link_to "edit", edit_project_milestone_path(@project.id, @milestone.id) %> |
+                <%= link_to "delete", project_milestone_path, method: :delete, 
   									 data: { confirm: "You sure?" }, 
   									 title: @milestone.name %>
+            </h3>
 
-  		<p><%= @milestone.project_id %></p>
-  		<p><%= @milestone.end_date %></p>
-  		<p><%= @milestone.milestone_type %></p>
-  	</section>
-    
-  </div>
+      		<p><%= @milestone.project_id %></p>
+      		<p><%= @milestone.end_date %></p>
+      		<p><%= @milestone.milestone_type %></p>
+      	
+        </section>
+    </div>
 </div>

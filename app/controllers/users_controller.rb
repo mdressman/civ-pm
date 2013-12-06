@@ -5,7 +5,10 @@ class UsersController < ApplicationController
     before_action :admin_user,     only: :destroy
 
   	def show
-      @user = User.find(params[:id])
+        @user = User.find(params[:id])
+        user_milestones = Milestone.find_all_by_user_id(@user.id)
+        user_checkpoints = Checkpoint.find_all_by_user_id(@user.id)
+        @user_owns = user_milestones + user_checkpoints
   	end
 
   	def index
@@ -48,8 +51,7 @@ class UsersController < ApplicationController
     private
 
         def user_params
-            params.require(:user).permit(:name, :email, :password,
-                                         :password_confirmation)
+            params.require(:user).permit(:name, :email, :password, :password_confirmation)
         end
 
         # Before filters

@@ -8,14 +8,16 @@
             <h1>Checkpoint: <%= @checkpoint.name %></h1>
             
 
-            <h3><%= link_to "edit", edit_project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint) %> | 
-            <%= link_to "delete", project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint), method: :delete, 
-  							 data: { confirm: "You sure?" }, 
-  							 title: @checkpoint.name %>
+            <h3>
+                <%= link_to "edit", edit_project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint) %> | 
+                <%= link_to "delete", project_milestone_checkpoint_path(@project.id, @checkpoint.milestone_id, @checkpoint),method: :delete, data: { confirm: "You sure?" }, title: @checkpoint.name %>
             </h3>
 
             <p>Start: <%= @checkpoint.start_date %></p>
             <p>End: <%= @checkpoint.end_date %></p>
+            <% if @checkpoint.user_id %>
+            <p>Owner: <%= User.find(@checkpoint.user_id).name %> / <%= User.find(@checkpoint.user_id).email %></p>
+            <% end %>
         </section>
     </div>
 </div>

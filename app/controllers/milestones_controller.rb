@@ -45,6 +45,7 @@ class MilestonesController < ApplicationController
     end
 
     def show
+        @project = Project.find(params[:project_id])
         @milestone = Milestone.find(params[:id])
     end
 
@@ -56,30 +57,36 @@ class MilestonesController < ApplicationController
         end
 
         def create_checkpoints
+            case @milestone.milestone_type
+                when "Print Design"
+                    Checkpoint.create("name" => "Internal Review", "end_date" => set_end_date(3), "project_id" => @project.id, "milestone_id" => @milestone.id)
+                    Checkpoint.create("name" => "Refinements", "start_date" => set_end_date(2), "end_date" => @milestone.end_date - 1.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
+                when "Interface Design"
+                    Checkpoint.create("name" => "Internal Review", "end_date" => set_end_date(3), "project_id" => @project.id, "milestone_id" => @milestone.id)
+                    Checkpoint.create("name" => "Refinements", "start_date" => set_end_date(2), "end_date" => @milestone.end_date - 1.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
+                when "Web Development"
+                    Checkpoint.create("name" => "Set up framework", "end_date" => set_end_date(30), "project_id" => @project.id, "milestone_id" => @milestone.id)
+                    Checkpoint.create("name" => "Set up staging site", "start_date" => set_end_date(14), "end_date" => @milestone.end_date - 14.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
+                    Checkpoint.create("name" => "Testing", "start_date" => set_end_date(7), "end_date" => @milestone.end_date - 7.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
+            end
+        end
+
+        def set_end_date(distance)
             if @milestone.end_date
-                case @milestone.milestone_type
-                    when "design_print"
-                        Checkpoint.create("name" => "Internal Review", "end_date" => @milestone.end_date - 3.days, "project_id" => @project.id, "milestone_id" => @milestone.id)
-                        Checkpoint.create("name" => "Refinements", "start_date" => @milestone.end_date - 2.days, "end_date" => @milestone.end_date - 1.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
-                    when "design_int"
-                        Checkpoint.create("name" => "Internal Review", "end_date" => @milestone.end_date - 3.days, "project_id" => @project.id, "milestone_id" => @milestone.id)
-                        Checkpoint.create("name" => "Refinements", "start_date" => @milestone.end_date - 2.days, "end_date" => @milestone.end_date - 1.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
-                    when "dev_web"
-                        Checkpoint.create("name" => "Set up framework", "end_date" => @milestone.end_date - 30.days)
-                        Checkpoint.create("name" => "Set up staging site", "start_date" => @milestone.end_date - 14.days, "end_date" => @milestone.end_date - 14.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
-                        Checkpoint.create("name" => "Testing", "start_date" => @milestone.end_date - 7.days, "end_date" => @milestone.end_date - 7.day, "project_id" => @project.id, "milestone_id" => @milestone.id)
-                end
+                @milestone.end_date - distance.days
+            else
+                nil
             end
         end
 
         def create_assets
             case @milestone.milestone_type
-                when "design_print"
+                when "Print Design"
                     Asset.create("name" => "Content", "milestone_id" => @milestone.id)
-                when "design_int"
+                when "Interface Design"
                     Asset.create("name" => "Website copy", "milestone_id" => @milestone.id)
                     Asset.create("name" => "Website images", "milestone_id" => @milestone.id)
-                when "dev_web"
+                when "Web Development"
                     Asset.create("name" => "Domain / Hosting info", "milestone_id" => @milestone.id)
             end
         end

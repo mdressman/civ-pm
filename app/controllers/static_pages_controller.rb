@@ -12,8 +12,8 @@ class StaticPagesController < ApplicationController
 	end	
 
 	def calendar
-		milestones = Milestone.all
-		checkpoints = Checkpoint.all
+		milestones = Milestone.with_end.all
+		checkpoints = Checkpoint.with_end.all
 		@events = milestones + checkpoints
 	end
   

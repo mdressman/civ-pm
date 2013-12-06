@@ -25,7 +25,7 @@ class CheckpointsController < ApplicationController
         @checkpoint = Checkpoint.find(params[:id])
         if @checkpoint.update_attributes(checkpoint_params)
             flash[:success] = "Checkpoint updated."
-            redirect_to @checkpoint
+            redirect_to root_url
         else
             render 'edit'
         end
@@ -40,7 +40,7 @@ class CheckpointsController < ApplicationController
     def destroy
         Checkpoint.find(params[:id]).destroy
         flash[:success] = "Checkpoint removed."
-        redirect_to milestone_checkpoints_url
+        redirect_to root_url
     end
 
     def index
@@ -58,10 +58,20 @@ class CheckpointsController < ApplicationController
             cp = Checkpoint.find(check)
             cp.update_attributes(:complete => !cp.complete)
         end
+        flash[:success] = "Checkpoints marked complete!"
         respond_to do |format|
             format.html { redirect_to root_url }
             format.js
         end
+    end
+
+    def bulk_delete
+        params[:checkpoint_ids].each do |check|
+            cp = Checkpoint.find(check)
+            cp.destroy
+        end
+        flash[:success] = "Checkpoints deleted!"
+        redirect_to root_url
     end
 
 

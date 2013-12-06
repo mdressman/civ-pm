@@ -6,13 +6,12 @@
     <%= form_for ([@project, @milestone]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
       <%= f.hidden_field :project_id, :value => params[:project_id] %>
 
-      <%= f.label :type %>
-      <%= select(:milestone, :milestone_type, options_for_select( [ ['Design Interface','design_int'], ['Develop Website','dev_web'], ['Branding','design_branding'], ['Print Design','design_print'] ]), {include_blank: 'Other'} ) %>
+      <%= f.label :type, "Name" %>
+      <%= select(:milestone, :milestone_type, options_for_select( [ ['Interface Design','Interface Design'], ['Web Development','Web Development'], ['Branding','Branding'], ['Print Design','Print Design'], ['Custom','Custom'] ]), {:prompt => '-- Choose --'} ) %>
+
+      <%= f.text_field :name %>
 
       <%= f.label :start_date %>
       <%= f.date_field :start_date %>
