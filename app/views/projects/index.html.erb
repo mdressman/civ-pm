@@ -1,21 +1,8 @@
-<% provide(:title, 'All Projects') %>
-<% if signed_in? %>
-	<h1>10k' View<span class="small-link"> | <%= link_to "New Project", new_project_path, class: "project-button" %></span></h1>
-	
-    <%= render @projects %>
+<% provide(:title, 'Projects') %>
+<h1>Projects</h1>
 
-	<%= will_paginate %>
+<h2><%= link_to "New Project", new_client_project_path %></h2>
 
-<% else %>
-    <div class="center hero-unit">
-        <h1>Civilization</h1>
-
-        <h2>Project Management</h2>
-
-        <p>Log in and do stuff.</p>
-
-        <%= link_to "Come inside", signin_path,
-                                class: "btn btn-large btn-primary" %>
-    </div>
-
-<% end %>
+<ul class="projects">
+	<%= render @projects %>
+</ul>

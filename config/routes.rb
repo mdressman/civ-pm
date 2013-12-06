@@ -2,9 +2,9 @@ CivPM::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :projects do
-    resources :milestones do 
-      resources :checkpoints do
+  resources :clients do
+    resources :projects do 
+      resources :milestones do
         collection do
           post :complete
         end
@@ -19,7 +19,7 @@ CivPM::Application.routes.draw do
 
 
   
-  root 'projects#index'
+  root 'clients#index'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

@@ -1,10 +1,51 @@
-<div class="row project">
-	<h2><%= link_to project.name, project %> 
-		<span class="small-link"> | <%= link_to "New Milestone", new_project_milestone_path(:project_id => project.id), class: "project-button" %></span>
-	</h2>
-	
-	<div class="milestones">
-	    <%= render project.milestones.order(:end_date) %>
+<!-- <%= check_box_tag 'project_ids[]', project.id %> -->
+<span class="project-name"><%= link_to project.name, client_project_path(project.client_id,  project) %></span>
+
+<% if project.end_date? %>
+	<span class="project-info">
+		| Expected due date: <%= project.end_date.strftime('%m/%d/%Y') %> |
+		<% if project.end_date >= DateTime.now %>upcoming: 
+		<% else %>overdue: 
+		<% end %>
+		<strong><%= distance_of_time_in_words_to_now(project.end_date) %></strong>
+	</span>
+<% end %>
+
+
+<div class="row">
+	<div class="span6">
+
+		<p class="sub-head">
+				Milestones 
+				<span class="small-link">| <%= link_to "New", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+				</span>
+			</p>
+		<% if project.milestones.present? %>
+			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/milestones/complete/") do %>
+			
+			<ul class="milestones">
+				<%= render project.milestones %>
+			</ul>
+			<%= submit_tag "Mark Complete", class: "client-button" %>
+			<% end %>
+		<% end %>
+
 	</div>
-	
+	<div class="span6">
+
+		<p class="sub-head">
+				Assets
+				<span class="small-link">| <%= link_to "New", new_client_project_asset_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+				</span>
+			</p>
+		<% if project.assets.present? %>
+			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/assets/receive/") do %>
+			
+			<ul class="assets">
+				<%= render project.assets %>
+			</ul>
+			<%= submit_tag "Mark Received", class: "client-button" %>
+			<% end %>
+		<% end %>
+	</div>
 </div>

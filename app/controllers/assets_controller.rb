@@ -1,13 +1,13 @@
 class AssetsController < ApplicationController
 	def new
+        @client = Client.find(params[:client_id])
         @project = Project.find(params[:project_id])
-        @milestone = Milestone.find(params[:milestone_id])
         @asset = Asset.new
     end
 
     def create
+        @client = Client.find(params[:client_id])
         @project = Project.find(params[:project_id])
-        @milestone = Milestone.find(params[:milestone_id])
         @asset = Asset.new(asset_params)
         if @asset.save 
   		    flash[:success] = "New asset created."
@@ -18,8 +18,8 @@ class AssetsController < ApplicationController
     end
 
     def update
+        @client = Client.find(params[:client_id])
         @project = Project.find(params[:project_id])
-        @milestone = Milestone.find(params[:milestone_id])
         @asset = Asset.find(params[:id])
         if @asset.update_attributes(asset_params)
             flash[:success] = "Asset updated."
@@ -30,8 +30,8 @@ class AssetsController < ApplicationController
     end
 
     def edit
+        @client = Client.find(params[:client_id])
         @project = Project.find(params[:project_id])
-        @milestone = Milestone.find(params[:milestone_id])
         @asset = Asset.find(params[:id])
     end
 
@@ -46,8 +46,8 @@ class AssetsController < ApplicationController
     end
 
     def show
-        @milestone = Milestone.find_by(params[:milestone_id])
-        @project = Project.find_by(params[:milestone_id])
+        @project = Project.find_by(params[:project_id])
+        @client = Client.find_by(params[:project_id])
         @asset = Asset.find(params[:id])
     end
 
@@ -66,10 +66,10 @@ class AssetsController < ApplicationController
     private
 
       	def asset_params
-      		params.require(:asset).permit(:name, :notes, :expected_date, :received_date, :milestone_id, :link)
+      		params.require(:asset).permit(:name, :notes, :expected_date, :received_date, :project_id, :link)
       	end
 
-      	# def set_milestone
-      	# 	@milestone = Milestone.find_by(:id, params[:milestone_id])
+      	# def set_project
+      	# 	@project = Project.find_by(:id, params[:project_id])
       	# end
 end

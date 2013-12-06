@@ -3,20 +3,21 @@
   
     <div class="span12">
         <section>
-  		    <h1>Project: <%= @project.name %></h1>
-            <h1>Milestone: <%= @milestone.name %></h1>
+            <h1>Project: <%= @client.name %></h1>
+            <h1>Milestone: <%= @project.name %></h1>
+            <h1>Checkpoint: <%= @milestone.name %></h1>
+            
 
-  		    <h3>
-                <%= link_to "edit", edit_project_milestone_path(@project.id, @milestone.id) %> |
-                <%= link_to "delete", project_milestone_path, method: :delete, 
-  									 data: { confirm: "You sure?" }, 
-  									 title: @milestone.name %>
+            <h3>
+                <%= link_to "edit", edit_client_project_milestone_path(@client.id, @milestone.project_id, @milestone) %> | 
+                <%= link_to "delete", client_project_milestone_path(@client.id, @milestone.project_id, @milestone),method: :delete, data: { confirm: "You sure?" }, title: @milestone.name %>
             </h3>
 
-      		<p><%= @milestone.project_id %></p>
-      		<p><%= @milestone.end_date %></p>
-      		<p><%= @milestone.milestone_type %></p>
-      	
+            <p>Start: <%= @milestone.start_date %></p>
+            <p>End: <%= @milestone.end_date %></p>
+            <% if @milestone.user_id %>
+            <p>Owner: <%= User.find(@milestone.user_id).name %> / <%= User.find(@milestone.user_id).email %></p>
+            <% end %>
         </section>
     </div>
 </div>

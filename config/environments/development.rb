@@ -34,7 +34,7 @@ CivPM::Application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'matt@wearecivilized.us',
-    password:             'Aleister#8683',
+    password:             'TODO',
     authentication:       'plain',
     enable_starttls_auto: true  }
 end

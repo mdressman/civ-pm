@@ -3,13 +3,13 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for ([@project, @milestone, @asset]) do |f| %>
+    <%= form_for ([@client, @client, @asset]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <h2>Project: <%= @milestone.project.name %></h2>
-      <h2>Milestone: <%= @milestone.name %></h2>
+      <h2>Project: <%= @client.client.name %></h2>
+      <h2>Milestone: <%= @client.name %></h2>
 
-      <%= f.hidden_field :milestone_id, :value => params[:milestone_id] %>
+      <%= f.hidden_field :client_id, :value => params[:client_id] %>
 
       <%= f.label :name %>
       <%= f.text_field :name %>

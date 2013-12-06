@@ -10,12 +10,12 @@ FactoryGirl.define do
 	    end
 	end
 
-	factory :project do 
-		sequence(:name) { |n| "Project #{n}" }
+	factory :client do 
+		sequence(:name) { |n| "Client #{n}" }
 	end
 
-	factory :milestone do
-		sequence(:name) { |n| "Milestone #{n}" }
+	factory :project do
+		sequence(:name) { |n| "Project #{n}" }
 		rand_time = rand(-7..7)
 		end { rand_time.days.from_now }
 	end

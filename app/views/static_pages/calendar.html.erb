@@ -3,9 +3,9 @@
 
 
 <%= calendar @events do |event| %>
-	<% if event.class.name == "Checkpoint" %>
-  		<div><%= link_to "[" + Project.find(event.project_id).name + "] (" + Milestone.find(event.milestone_id).name + ") " + event.name, project_milestone_checkpoint_path(Milestone.find(event.milestone_id).project_id, event.milestone_id, event) %></div>
+	<% if event.class.name == "Milestone" %>
+  		<div><%= link_to "[" + Client.find(event.client_id).name + "] (" + Project.find(event.project_id).name + ") " + event.name, client_project_milestone_path(Project.find(event.project_id).client_id, event.project_id, event) %></div>
   	<% else %>
-  		<div><%= link_to "[" + Project.find(event.project_id).name + "] " + event.name, project_milestone_path(event.project_id, event) %></div>
+  		<div><%= link_to "[" + Client.find(event.client_id).name + "] " + event.name, client_project_path(event.client_id, event) %></div>
   	<% end %>
 <% end %>

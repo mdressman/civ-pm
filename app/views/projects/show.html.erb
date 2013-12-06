@@ -3,20 +3,20 @@
   
     <div class="span12">
         <section>
-  		    <h1><%= @project.name %></h1>
+  		    <h1>Project: <%= @client.name %></h1>
+            <h1>Milestone: <%= @project.name %></h1>
 
-          <%= link_to "delete", @project,
-                    method: :delete, 
-                    data: { confirm: "You sure?" }, 
-                    title: @project.name %>
+  		    <h3>
+                <%= link_to "edit", edit_client_project_path(@client.id, @project.id) %> |
+                <%= link_to "delete", client_project_path, method: :delete, 
+  									 data: { confirm: "You sure?" }, 
+  									 title: @project.name %>
+            </h3>
 
-  		    <!-- <p><%= Faker::Lorem.sentence(10) %></p> -->
-
-  		    <h3>Milestones</h3>
-  		    <ul class="milestones">
-                <%= render @milestones %>
-            </ul>
+      		<p><%= @project.client_id %></p>
+      		<p><%= @project.end_date %></p>
+      		<p><%= @project.project_type %></p>
+      	
         </section>
-    
-  </div>
+    </div>
 </div>

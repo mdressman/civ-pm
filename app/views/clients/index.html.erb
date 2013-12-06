@@ -1,0 +1,21 @@
+<% provide(:title, 'All Clients') %>
+<% if signed_in? %>
+	<h1>10k' View<span class="small-link"> | <%= link_to "New Client", new_client_path, class: "client-button" %></span></h1>
+	
+    <%= render @clients %>
+
+	<%= will_paginate %>
+
+<% else %>
+    <div class="center hero-unit">
+        <h1>Civilization</h1>
+
+        <h2>Project Management</h2>
+
+        <p>Log in and do stuff.</p>
+
+        <%= link_to "Come inside", signin_path,
+                                class: "btn btn-large btn-primary" %>
+    </div>
+
+<% end %>

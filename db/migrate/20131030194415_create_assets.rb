@@ -6,7 +6,7 @@ class CreateAssets < ActiveRecord::Migration
       t.string :notes
       t.datetime :expected_date
       t.datetime :received_date
-      t.integer :milestone_id
+      t.integer :project_id
 
       t.timestamps
     end

@@ -1,12 +1,3 @@
-# Milestones js
-
-ready = ->
-
-	$("#milestone_name").hide()
-
-	$("#milestone_milestone_type").change(->
-  		$("#milestone_name")[(if $(this).val() is "Custom" then "show" else "hide")] "fast"
-	).change()
-
-$(document).ready ready
-$(document).on 'page:change', ready
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/

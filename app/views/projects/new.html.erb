@@ -1,21 +1,31 @@
 <% provide(:title, 'New Project') %>
-<h1>New Project</h1>
+<h1>New Project for <%= @client.name %></h1>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@project) do |f| %>
+    <%= form_for ([@client, @project]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
+      <%= f.hidden_field :client_id, :value => params[:client_id] %>
+
+      <%= f.label :type, "Name" %>
+      <%= select(:project, :project_type, options_for_select( [ ['Interface Design','Interface Design'], ['Web Development','Web Development'], ['Branding','Branding'], ['Print Design','Print Design'], ['Custom','Custom'] ]), {:prompt => '-- Choose --'} ) %>
+
       <%= f.text_field :name %>
 
       <%= f.label :start_date %>
       <%= f.date_field :start_date %>
 
-      <%= f.label :team %>
-      <%= f.text_field :team %>
+      <%= f.label :end_date %>
+      <%= f.date_field :end_date %>
 
-      <%= f.submit "Next - Create Milestones", class: "project-button" %>
+      <%= f.label :user_id, "Owner" %>
+      <%= collection_select(:project, :user_id, User.all, :id, :name) %>
+
+	    <%= f.label :estimate %>
+      <%= f.number_field :estimate %>      
+
+      <%= f.submit "Create project", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

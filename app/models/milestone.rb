@@ -1,22 +1,17 @@
 class Milestone < ActiveRecord::Base
-	has_many :checkpoints, dependent: :destroy
-	has_many :assets, dependent: :destroy
 	belongs_to :project
-	# validates :name, presence: true
 
-    scope :with_end, where("end_date IS NOT NULL")
+	# after_create :send_email
 
-	before_create :set_milestone_name
+	scope :with_end, where("end_date IS NOT NULL")
 
 	def start_time
     	end_date
   	end
 
-  	protected
-
-  		def set_milestone_name
-            if self.milestone_type != 'Custom'
-                self.name = self.milestone_type
-            end
-        end
+	# def send_email
+	#     if self.user_id
+	#         ProjectMailer.notification_email(User.find(self.user_id), Project.find(self.project_id)).deliver
+	#     end
+	# end
 end

@@ -1,6 +1,6 @@
 <li class="<% if asset.received? %>complete<% end %>">
 	<%= check_box_tag 'asset_ids[]', asset.id %>
-	<%= link_to asset.name, project_milestone_asset_path(Milestone.find_by(asset.milestone_id).project_id, asset.milestone_id, asset) %> 
+	<%= link_to asset.name, client_project_asset_path(Project.find_by(asset.project_id).client_id, asset.project_id, asset) %> 
 	| TODO Expected date
 	<% if asset.received? %>| Received: <%= asset.received_date.strftime('%m/%d/%Y') %><% end %>
 </li>

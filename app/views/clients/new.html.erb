@@ -1,0 +1,21 @@
+<% provide(:title, 'New Client') %>
+<h1>New Client</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@client) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :start_date %>
+      <%= f.date_field :start_date %>
+
+      <%= f.label :team %>
+      <%= f.text_field :team %>
+
+      <%= f.submit "Next - Create Milestones", class: "client-button" %>
+    <% end %>
+  </div>
+</div>
