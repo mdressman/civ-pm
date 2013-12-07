@@ -84,11 +84,11 @@ input {
     height: auto !important;
 }
 
-.milestones input.project-button {
+.projects input.client-button {
     margin-left: 20px;
 }
 
-.project-button {
+.client-button {
     background: none;
     font-size: 10px;
     font-style: italic;
@@ -203,9 +203,7 @@ footer {
     }
 }
 
-/* Projects */
-
-.project {
+.client {
     border-bottom: 1px solid $grayLight;
     margin-bottom: 20px; 
     margin-left: 0;
@@ -215,7 +213,7 @@ footer {
     }
 }
 
-.checkpoints, .assets {
+.milestones, .assets {
     list-style: none;
     margin-left: 20px;
     li {
@@ -233,7 +231,7 @@ footer {
     }
 }
 
-.milestone-name {
+.project-name {
     font-weight: 700;
     font-size: 16px;
 }
@@ -249,7 +247,7 @@ p.sub-head {
     /*font-weight: bold;*/
 }
 
-.milestone-info {
+.project-info {
     font-size: 0.9em;
 }
 

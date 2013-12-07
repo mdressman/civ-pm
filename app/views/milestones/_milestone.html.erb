@@ -1,13 +1,13 @@
 <li class="<% if milestone.complete? %>complete<% end %>">
 	<%= check_box_tag 'milestone_ids[]', milestone.id %>
-	<%= link_to checkpoint.name, client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, milestone) %> 
-	<% if milestone.end_date? %>
-		| <%= milestone.end_date.strftime('%m/%d/%Y') %>
+	<%= link_to milestone.name, client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, milestone) %> 
+	<% if milestone.estimated_date? %>
+		| <%= milestone.estimated_date.strftime('%m/%d/%Y') %>
 		<% if !milestone.complete %> |
-			<% if milestone.end_date >= DateTime.now %>upcoming: 
+			<% if milestone.estimated_date >= DateTime.now %>upcoming: 
 			<% else %>overdue: 
 			<% end %>
-			<strong><%= distance_of_time_in_words_to_now(milestone.end_date) %></strong>
+			<strong><%= distance_of_time_in_words_to_now(milestone.estimated_date) %></strong>
 		<% end %>
 
 	<% end %>

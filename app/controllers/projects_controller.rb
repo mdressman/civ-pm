@@ -59,19 +59,15 @@ class ProjectsController < ApplicationController
         def create_milestones
             case @project.project_type
                 when "Print Design"
-                    Checkpoint.create("name" => "Internal Review", "end_date" => set_end_date(3), "client_id" => @client.id, "project_id" => @project.id)
-                    Checkpoint.create("name" => "Refinements", "start_date" => set_end_date(2), "end_date" => @project.end_date - 1.day, "client_id" => @client.id, "project_id" => @project.id)
+                    Milestone.create("name" => "Internal Review", "estimated_date" => set_estimated_deadline(3), "estimated_time" => 8, "client_id" => @client.id, "project_id" => @project.id)
                 when "Interface Design"
-                    Checkpoint.create("name" => "Internal Review", "end_date" => set_end_date(3), "client_id" => @client.id, "project_id" => @project.id)
-                    Checkpoint.create("name" => "Refinements", "start_date" => set_end_date(2), "end_date" => @project.end_date - 1.day, "client_id" => @client.id, "project_id" => @project.id)
+                    Milestone.create("name" => "Internal Review", "estimated_date" => set_estimated_deadline(3), "estimated_time" => 8, "client_id" => @client.id, "project_id" => @project.id)
                 when "Web Development"
-                    Checkpoint.create("name" => "Set up framework", "end_date" => set_end_date(30), "client_id" => @client.id, "project_id" => @project.id)
-                    Checkpoint.create("name" => "Set up staging site", "start_date" => set_end_date(14), "end_date" => @project.end_date - 14.day, "client_id" => @client.id, "project_id" => @project.id)
-                    Checkpoint.create("name" => "Testing", "start_date" => set_end_date(7), "end_date" => @project.end_date - 7.day, "client_id" => @client.id, "project_id" => @project.id)
+                    Milestone.create("name" => "Internal Review", "estimated_date" => set_estimated_deadline(3), "estimated_time" => 8, "client_id" => @client.id, "project_id" => @project.id)
             end
         end
 
-        def set_end_date(distance)
+        def set_estimated_deadline(distance)
             if @project.end_date
                 @project.end_date - distance.days
             else

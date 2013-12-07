@@ -7,6 +7,7 @@ class CreateAssets < ActiveRecord::Migration
       t.datetime :expected_date
       t.datetime :received_date
       t.integer :project_id
+      t.string :link
 
       t.timestamps
     end

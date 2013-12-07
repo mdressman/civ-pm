@@ -3,8 +3,8 @@
   
     <div class="span12">
         <section>
-  		    <h1>Project: <%= @client.name %></h1>
-            <h1>Milestone: <%= @project.name %></h1>
+  		    <h1>Client: <%= @client.name %></h1>
+          <h1>Project: <%= @project.name %></h1>
 
   		    <h3>
                 <%= link_to "edit", edit_client_project_path(@client.id, @project.id) %> |
@@ -16,6 +16,8 @@
       		<p><%= @project.client_id %></p>
       		<p><%= @project.end_date %></p>
       		<p><%= @project.project_type %></p>
+
+          <!-- total time spent -->
       	
         </section>
     </div>

@@ -9,11 +9,20 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
 
-      <%= f.label :start_date %>
-      <%= f.date_field :start_date %>
+      <%= f.label :contact_name %>
+      <%= f.text_field :contact_name %>
 
-      <%= f.label :team %>
-      <%= f.text_field :team %>
+      <%= f.label :contact_email %>
+      <%= f.text_field :contact_email %>
+
+      <%= f.label :contact_phone %>
+      <%= f.text_field :contact_phone %>
+
+      <%= f.label :contact_address %>
+      <%= f.text_field :contact_address %>
+
+      <%= f.label :notes %>
+      <%= f.text_field :notes %>
 
       <%= f.submit "Next - Create Milestones", class: "client-button" %>
     <% end %>

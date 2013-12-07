@@ -15,14 +15,20 @@
         <%= f.label :name %>
         <%= f.text_field :name %>
 
-        <%= f.label :start_date %>
-        <%= f.date_field :start_date %>
+        <%= f.label :estimated_date %>
+        <%= f.date_field :estimated_date %>
 
-        <%= f.label :end_date %>
-        <%= f.date_field :end_date %>
+        <%= f.label :actual_date %>
+        <%= f.date_field :actual_date %>
 
-        <%= f.label :user_id, "Owner" %>
-        <%= collection_select(:milestone, :user_id, User.all, :id, :name, :prompt => "--- Choose ---") %>
+        <%= f.label :estimated_time %>
+        <%= f.number_field :estimated_time %>
+
+        <%= f.label :actual_time %>
+        <%= f.number_field :actual_time %>
+
+        <%= f.label :notes %>
+        <%= f.text_field :notes %>
 
         <%= f.submit "Edit milestone", class: "btn btn-large btn-primary" %>
         <% end %>

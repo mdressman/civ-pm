@@ -5,6 +5,13 @@
         <section>
   		    <h1><%= @client.name %></h1>
 
+          <p><%= @client.contact_name %></p>
+          <p><%= @client.contact_email %></p>
+          <p><%= @client.contact_phone %></p>
+          <p><%= @client.contact_address %></p>
+
+          <p><%= @client.notes %></p>
+
           <%= link_to "delete", @client,
                     method: :delete, 
                     data: { confirm: "You sure?" }, 

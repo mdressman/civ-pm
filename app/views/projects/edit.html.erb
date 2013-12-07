@@ -13,17 +13,19 @@
 
       <%= f.text_field :name %>
 
+      <%= f.label :project_number %>
+      <%= f.text_field :project_number %>
+
       <%= f.label :start_date %>
       <%= f.date_field :start_date %>
 
       <%= f.label :end_date %>
       <%= f.date_field :end_date %>
 
-      <%= f.label :user_id, "Owner" %>
-      <%= collection_select(:project, :user_id, User.all, :id, :name) %>
+      <%= f.label :notes %>
+      <%= f.text_field :notes %>
 
-	    <%= f.label :estimate %>
-      <%= f.number_field :estimate %>      
+      <!-- total time spent -->     
 
       <%= f.submit "Edit project", class: "btn btn-large btn-primary" %>
     <% end %>

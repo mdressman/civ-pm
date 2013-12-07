@@ -3,10 +3,10 @@ class Milestone < ActiveRecord::Base
 
 	# after_create :send_email
 
-	scope :with_end, where("end_date IS NOT NULL")
+	scope :with_estimated_date, where("estimated_date IS NOT NULL")
 
 	def start_time
-    	end_date
+    	estimated_date
   	end
 
 	# def send_email

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104193702) do
+ActiveRecord::Schema.define(version: 20131030194415) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -19,59 +19,63 @@ ActiveRecord::Schema.define(version: 20131104193702) do
     t.string   "notes"
     t.datetime "expected_date"
     t.datetime "received_date"
-    t.integer  "milestone_id"
+    t.integer  "project_id"
+    t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "link"
   end
 
-  create_table "checkpoints", force: true do |t|
+  create_table "clients", force: true do |t|
     t.string   "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer  "estimate"
-    t.integer  "user_id"
-    t.integer  "milestone_id"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "contact_phone"
+    t.string   "contact_address"
     t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "complete",     default: false
-    t.integer  "project_id"
   end
-
-  add_index "checkpoints", ["project_id"], name: "index_checkpoints_on_project_id"
 
   create_table "milestones", force: true do |t|
     t.string   "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer  "estimate"
-    t.integer  "user_id"
-    t.integer  "project_id"
+    t.datetime "estimated_date"
+    t.datetime "actual_date"
+    t.float    "estimated_time"
+    t.float    "actual_time"
     t.string   "notes"
+    t.integer  "project_id"
+    t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "complete",       default: false
-    t.string   "milestone_type"
   end
 
-  add_index "milestones", ["milestone_type"], name: "index_milestones_on_milestone_type"
+  add_index "milestones", ["client_id"], name: "index_milestones_on_client_id"
+  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id"
 
   create_table "projects", force: true do |t|
+    t.integer  "client_id"
     t.string   "name"
+    t.string   "project_number"
+    t.string   "project_type"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.float    "total_time_spent"
+    t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "start_date"
-    t.string   "team"
+    t.boolean  "complete",         default: false
   end
+
+  add_index "projects", ["project_type"], name: "index_projects_on_project_type"
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "admin",           default: false
   end
 

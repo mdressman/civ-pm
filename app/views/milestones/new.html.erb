@@ -6,8 +6,8 @@
         <%= form_for ([@client, @project, @milestone]) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
-        <h2>Project: <%= @client.name %></h2>
-        <h2>Milestone: <%= @project.name %></h2>
+        <h2>Client: <%= @client.name %></h2>
+        <h2>Project: <%= @project.name %></h2>
 
         <%= f.hidden_field :client_id, :value => params[:client_id] %>
         <%= f.hidden_field :project_id, :value => params[:project_id] %>
@@ -15,14 +15,20 @@
         <%= f.label :name %>
         <%= f.text_field :name %>
 
-        <%= f.label :start_date %>
-        <%= f.date_field :start_date %>
+        <%= f.label :estimated_date %>
+        <%= f.date_field :estimated_date %>
 
-        <%= f.label :end_date %>
-        <%= f.date_field :end_date %>
+        <%= f.label :actual_date %>
+        <%= f.date_field :actual_date %>
 
-        <%= f.label :user_id, "Owner" %>
-        <%= collection_select(:milestone, :user_id, User.all, :id, :name, :prompt => "--- Choose ---") %>
+        <%= f.label :estimated_time %>
+        <%= f.text_field :estimated_time %>
+
+        <%= f.label :actual_time %>
+        <%= f.text_field :actual_time %>
+
+        <%= f.label :notes %>
+        <%= f.text_field :notes %>
 
         <%= f.submit "Create milestone", class: "btn btn-large btn-primary" %>
 
