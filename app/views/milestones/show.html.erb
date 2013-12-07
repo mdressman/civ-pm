@@ -11,6 +11,11 @@
                 <%= link_to "edit", edit_client_project_milestone_path(@client.id, @milestone.project_id, @milestone) %> | 
                 <%= link_to "delete", client_project_milestone_path(@client.id, @milestone.project_id, @milestone),method: :delete, data: { confirm: "You sure?" }, title: @milestone.name %>
             </p>
+
+            <p>Estimated time: <%= @milestone.estimated_time %></p>
+            <p>Actual time: <%= @milestone.actual_time %></p>
+            <p>Estimated date: <%= @milestone.estimated_date %></p>
+            <p>Actual date: <%= @milestone.actual_time %></p>
             
         </section>
     </div>
