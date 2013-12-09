@@ -14,7 +14,9 @@
 
             <p>Estimated time: <%= @milestone.estimated_time %></p>
             <p>Actual time: <%= @milestone.actual_time %></p>
-            <p>Estimated date: <%= @milestone.estimated_date %></p>
+            <p>Estimated date: <%= @milestone.estimated_date.strftime('%m/%d/%Y') %></p>
+            <p>Beginning of week: <%= @milestone.estimated_date.beginning_of_week.strftime('%m/%d/%Y') %></p>
+            <p>End of week: <%= @milestone.estimated_date.end_of_week(start_day=:saturday).strftime('%m/%d/%Y') %></p>
             <p>Actual date: <%= @milestone.actual_time %></p>
             
         </section>

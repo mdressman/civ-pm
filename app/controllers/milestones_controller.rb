@@ -78,7 +78,7 @@ class MilestonesController < ApplicationController
     private
 
       	def milestone_params
-      		params.require(:milestone).permit(:name, :start_date, :end_date, :esimate, :user_id, :project_id, :client_id)
+      		params.require(:milestone).permit(:name, :estimated_date, :actual_date, :esimated_time, :actual_time, :notes, :project_id, :client_id)
       	end
 
       	# def set_project
