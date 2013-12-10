@@ -1,0 +1,31 @@
+<% provide(:title, 'New Deliverable') %>
+<h1>New Deliverable</h1>
+
+<div class="row">
+    <div class="span6 offset3">
+        <%= form_for ([@client, @project, @deliverable]) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <h2>Project: <%= @project.client.name %></h2>
+        <h2>Milestone: <%= @project.name %></h2>
+
+        <%= f.hidden_field :project_id, :value => params[:project_id] %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :notes %>
+        <%= f.text_field :notes %>
+
+        <%= f.label :completed_date %>
+        <%= f.date_field :completed_date %>
+
+        <%= f.label :link %>
+        <%= f.text_field :link %>
+
+        <!-- USER ID -->
+
+        <%= f.submit "Create deliverable", class: "btn btn-large btn-primary" %>
+        <% end %>
+    </div>
+</div>

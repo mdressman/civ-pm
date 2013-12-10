@@ -47,5 +47,20 @@
 			<%= submit_tag "Mark Received", class: "client-button" %>
 			<% end %>
 		<% end %>
+
+		<p class="sub-head">
+			Deliverables
+			<span class="small-link">| <%= link_to "New", new_client_project_deliverable_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+			</span>
+		</p>
+		<% if project.deliverables.present? %>
+			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/deliverables/complete/") do %>
+			
+			<ul class="deliverables">
+				<%= render project.deliverables %>
+			</ul>
+			<%= submit_tag "Mark Complete", class: "client-button" %>
+			<% end %>
+		<% end %>
 	</div>
 </div>

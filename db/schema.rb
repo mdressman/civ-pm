@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210001903) do
+ActiveRecord::Schema.define(version: 20131210231947) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20131210001903) do
     t.string   "contact_phone"
     t.string   "contact_address"
     t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "deliverables", force: true do |t|
+    t.string   "name"
+    t.boolean  "complete"
+    t.datetime "completed_date"
+    t.integer  "user_id"
+    t.string   "notes"
+    t.integer  "project_id"
+    t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -14,6 +14,11 @@ CivPM::Application.routes.draw do
           post :receive
         end
       end
+      resources :deliverables do
+        collection do
+          post :complete
+        end
+      end
     end
   end
 

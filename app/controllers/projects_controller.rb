@@ -149,5 +149,38 @@ class ProjectsController < ApplicationController
             end
         end
 
+        def create_deliverables
+            case @project.project_type
+                when "Branding 1"
+                    branding1_deliverables = [
+                                                ['Mood Board 1'],
+                                                ['Mood Board 2'],
+                                                ['Logo Round 1'],
+                                                ['Logo Round 2'],
+                                                ['Final Logo Package'],
+                                                ['Style Guide'],
+                                        ]
+                    
+                    branding1_deliverables.each do |dv| 
+                        Deliverable.create("name" => dv[0], "project_id" => @project.id)
+                    end                    
+
+                when "Branding 2"
+                
+                when "Print 1"
+
+                when "Print 2"
+
+                when "Web Design 1"
+
+                when "Web Design 2"
+                
+                when "Web Development 1"
+
+                when "Web Development 2"    
+                
+            end
+        end
+
         
 end
