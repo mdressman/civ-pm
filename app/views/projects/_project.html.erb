@@ -34,10 +34,10 @@
 	<div class="span6">
 
 		<p class="sub-head">
-				Assets
-				<span class="small-link">| <%= link_to "New", new_client_project_asset_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
-				</span>
-			</p>
+			Assets
+			<span class="small-link">| <%= link_to "New", new_client_project_asset_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+			</span>
+		</p>
 		<% if project.assets.present? %>
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/assets/receive/") do %>
 			

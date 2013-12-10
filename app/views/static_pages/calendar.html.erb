@@ -1,7 +1,6 @@
 <% provide(:title, 'Calendar') %>
 <h1>Calendar</h1>
 
-
 <%= calendar @events do |event| %>
 	<% if event.class.name == "Milestone" %>
   		<div><%= link_to "[" + Client.find(event.client_id).name + "] (" + Project.find(event.project_id).name + ") " + event.name, client_project_milestone_path(Project.find(event.project_id).client_id, event.project_id, event) %></div>

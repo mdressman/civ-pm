@@ -1,5 +1,6 @@
 class Milestone < ActiveRecord::Base
 	belongs_to :project
+	acts_as_list scope: :project
 
 	# after_create :send_email
 
@@ -8,6 +9,8 @@ class Milestone < ActiveRecord::Base
 	def start_time
     	estimated_date
   	end
+
+  	protected
 
 	# def send_email
 	#     if self.user_id

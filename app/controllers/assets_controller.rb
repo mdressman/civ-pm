@@ -47,7 +47,7 @@ class AssetsController < ApplicationController
 
     def show
         @project = Project.find_by(params[:project_id])
-        @client = Client.find_by(params[:project_id])
+        @client = Client.find_by(params[:client_id])
         @asset = Asset.find(params[:id])
     end
 

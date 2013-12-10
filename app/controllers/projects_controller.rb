@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
     end
 
     def index
-        @projects = Project.all.order(:end_date)
+        @projects = Project.all #.order(:end_date)
     end
 
     def show
@@ -88,8 +88,7 @@ class ProjectsController < ApplicationController
                                         ]
                     branding1_milestones.each do |ms| 
                         Milestone.create("name" => ms[0], "estimated_date" => set_estimated_deadline(ms[1]), "estimated_time" => ms[2], "client_id" => @client.id, "project_id" => @project.id)
-                    end
-                    # Milestone.create("name" => "Internal Review", "estimated_date" => set_estimated_deadline(3), "estimated_time" => 8, "client_id" => @client.id, "project_id" => @project.id)
+                    end                    
 
                 when "Branding 2"
                 
@@ -112,21 +111,43 @@ class ProjectsController < ApplicationController
             if @project.start_date
                 @project.start_date + distance.weeks
             else
-                nil
+                Date.today + distance.weeks
             end
         end
 
         def create_assets
             case @project.project_type
-                when "Print Design"
-                    Asset.create("name" => "Content", "project_id" => @project.id)
-                when "Interface Design"
-                    Asset.create("name" => "Website copy", "project_id" => @project.id)
-                    Asset.create("name" => "Website images", "project_id" => @project.id)
-                when "Web Development"
-                    Asset.create("name" => "Domain / Hosting info", "project_id" => @project.id)
+                when "Branding 1"
+                    branding1_assets = [
+                                                ['Creative Brief'],
+                                                ['Inspiration'],
+                                                ['Mood Board 1 Feedback'],
+                                                ['Mood Board 2 Feedback'],
+                                                ['Round 1 Feedback'],
+                                                ['Round 2 Feedback'],
+                                                ['Final Signoff'],
+                                        ]
+                    
+                    branding1_assets.each do |as| 
+                        Asset.create("name" => as[0], "project_id" => @project.id)
+                    end                    
+
+                when "Branding 2"
+                
+                when "Print 1"
+
+                when "Print 2"
+
+                when "Web Design 1"
+
+                when "Web Design 2"
+                
+                when "Web Development 1"
+
+                when "Web Development 2"    
+                
             end
         end
 
-    
+        
 end

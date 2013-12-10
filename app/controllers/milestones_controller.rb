@@ -25,6 +25,7 @@ class MilestonesController < ApplicationController
         @milestone = Milestone.find(params[:id])
         if @milestone.update_attributes(milestone_params)
             flash[:success] = "Milestone updated."
+            @milestone.insert_at(Milestone.find(params[:manual_position]['id'].to_i).position)
             redirect_to root_url
         else
             render 'edit'
@@ -78,8 +79,10 @@ class MilestonesController < ApplicationController
     private
 
       	def milestone_params
-      		params.require(:milestone).permit(:name, :estimated_date, :actual_date, :esimated_time, :actual_time, :notes, :project_id, :client_id)
+      		params.require(:milestone).permit(:name, :estimated_date, :actual_date, :estimated_time, :actual_time, :notes, :project_id, :client_id, :manual_position_id)
       	end
+
+
 
       	# def set_project
       	# 	@project = Project.find_by(:id, params[:project_id])
