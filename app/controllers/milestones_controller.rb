@@ -13,6 +13,7 @@ class MilestonesController < ApplicationController
         @milestone = Milestone.new(milestone_params)
         if @milestone.save 
   		    flash[:success] = "New milestone created."
+            @milestone.insert_at(Milestone.find(params[:manual_position]['id'].to_i).position)
   		    redirect_to root_url
         else
   		    render 'new'
