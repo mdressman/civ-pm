@@ -1,5 +1,5 @@
 <!-- <%= check_box_tag 'project_ids[]', project.id %> -->
-<span class="project-name"><%= link_to project.name, client_project_path(project.client_id,  project) %></span>
+<span class="project-name"><%= link_to project.name, client_project_path(project.client_id, project) %></span>
 
 <% if project.end_date? %>
 	<span class="project-info">
@@ -16,16 +16,23 @@
 	<div class="span6">
 
 		<p class="sub-head">
-				Milestones 
-				<span class="small-link">| <%= link_to "New", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
-				</span>
-			</p>
+			Milestones 
+			<span class="small-link">| <%= link_to "New", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+			</span>
+		</p>
 		<% if project.milestones.present? %>
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/milestones/complete/") do %>
 			
-			<ul class="milestones">
-				<%= render project.milestones %>
-			</ul>
+			<% Milestone.select('distinct(phase)').each do |ph| %>
+			
+				<h4><%= ph.phase %></h4>
+	
+				<ul class="milestones">
+					<%= render project.milestones.where('phase = "' + ph.phase + '"') %>
+				</ul>
+			
+			<% end %>
+
 			<%= submit_tag "Mark Complete", class: "client-button" %>
 			<% end %>
 		<% end %>

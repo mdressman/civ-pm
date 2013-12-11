@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210231947) do
+ActiveRecord::Schema.define(version: 20131211013210) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20131210231947) do
     t.datetime "updated_at"
     t.boolean  "complete",       default: false
     t.integer  "position"
+    t.string   "phase"
   end
 
   add_index "milestones", ["client_id"], name: "index_milestones_on_client_id"

@@ -225,7 +225,7 @@ footer {
             border-bottom: 1px solid $grayLighter;
         }
 
-        &.complete {
+        &.complete, &.received {
             text-decoration: line-through;
         }
     }
