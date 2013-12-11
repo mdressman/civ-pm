@@ -1,6 +1,5 @@
-<% provide(:title, 'All Clients') %>
+<% provide(:title, 'CivPM') %>
 <% if signed_in? %>
-	<h1>10k' View<span class="small-link"> | <%= link_to "New Client", new_client_path, class: "client-button" %></span></h1>
 	
     <%= render @clients %>
 
