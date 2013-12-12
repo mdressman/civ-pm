@@ -56,6 +56,13 @@ class MilestonesController < ApplicationController
     end
 
     def complete
+        ms = Milestone.find(params[:id])
+        ms.update_attributes(:complete => !ms.complete)
+        flash[:success] = ms.name + " marked complete."
+        redirect_to root_url
+    end
+
+    def bulk_complete
         params[:milestone_ids].each do |check|
             cp = Milestone.find(check)
             cp.update_attributes(:complete => !cp.complete)

@@ -1,15 +1,19 @@
 <div class="span2 <% if milestone.complete? %>complete<% end %>">
+	<div class="milestone">
 
-	<%= check_box_tag 'milestone_ids[]', milestone.id %>
-	<%= link_to milestone.name, client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, milestone) %> 
-	<!-- <% if milestone.estimated_date? %>
-		| <%= milestone.estimated_date.strftime('%m/%d/%Y') %>
-		<% if !milestone.complete %> |
-			<% if milestone.estimated_date >= DateTime.now %>upcoming: 
-			<% else %>overdue: 
+		<p class="ms-name"><%= link_to milestone.name, client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, milestone) %></p>
+		<% if milestone.estimated_date? %>
+			<p class="ms-date"><%= milestone.estimated_date.strftime('%m/%d/%Y') %></p>
+			<% if !milestone.complete %>
+				<p class="ms-deadline">
+				<% if milestone.estimated_date >= DateTime.now %>Upcoming: 
+				<% else %>Overdue: 
+				<% end %>
+				<%= distance_of_time_in_words_to_now(milestone.estimated_date) %>
+				</p>
 			<% end %>
-			<strong><%= distance_of_time_in_words_to_now(milestone.estimated_date) %></strong>
 		<% end %>
-	<% end %>
--->
+		<p class="client-button"><%= link_to "Mark Complete", complete_client_project_milestones_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, :id => milestone.id), method: :post %></p>
+
+	</div>
 </div>

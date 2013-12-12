@@ -1,21 +1,20 @@
 <header class="container">
     
         
-        <%= link_to "Civilization", root_path, id: "logo" %>
-        <nav>
-            <ul class="topnav">
+    <%= link_to "Civilization", root_path, id: "logo" %>
+    <nav>
+        <ul class="topnav">
+            
+            <% if signed_in? %>
                 <li><%= link_to "Calendar", calendar_path %></li>
-              
-                <% if signed_in? %>
+                <li><%= link_to "Team", users_path %></li>
+                <li><%= link_to "New Client", new_client_path %></li>
+                <li><%= link_to "Log out", signout_path, method: "delete" %></li>
                 
-                    <li><%= link_to "Team", users_path %></li>
-                    <li><%= link_to "New Client", new_client_path %></li>
-                    <li><%= link_to "Log out", signout_path, method: "delete" %></li>
-                    
-                <% else %>
-                    <li><%= link_to "Log in", signin_path %></li>
-                <% end %>
-            </ul>
-        </nav>
+            <% else %>
+                <li><%= link_to "Log in", signin_path %></li>
+            <% end %>
+        </ul>
+    </nav>
     
 </header>

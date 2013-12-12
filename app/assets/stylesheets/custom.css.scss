@@ -19,6 +19,7 @@ html {
 
 body {
     /*padding-top: 60px;*/
+    font-size: 0.8em;
 }
 
 header {
@@ -86,10 +87,6 @@ input, textarea, select, .uneditable-input {
 
 input {
     height: auto !important;
-}
-
-.projects input.client-button {
-    margin-left: 20px;
 }
 
 .client-button {
@@ -229,7 +226,7 @@ footer {
     }
 }
 
-ul.milestones, ul.assets, ul.deliverables {
+ul.assets, ul.deliverables {
     list-style: none;
     margin-left: 20px;
     li {
@@ -245,6 +242,26 @@ ul.milestones, ul.assets, ul.deliverables {
     }
 }
 
+.milestone {
+    padding: 10px 0;
+
+    p.ms-name {
+        font-size: 0.9em;
+        font-weight: 600;
+        line-height: 12px;
+        padding: 0 0 6px 0;
+    }
+
+    p.ms-date {
+        font-size: 0.9em;
+    }
+
+    p.ms-deadline {
+        font-size: 0.8em;
+        font-style: italic;
+    }
+}
+
 .complete, .received {
     text-decoration: line-through;
 }
@@ -252,6 +269,9 @@ ul.milestones, ul.assets, ul.deliverables {
 .phases { 
     padding: 10px 0;
     li {
+        &.active {
+            font-style: italic;
+        }
         a {
             font-size: 16px;
             font-weight: 700;
@@ -271,9 +291,7 @@ ul.milestones, ul.assets, ul.deliverables {
     line-height: 34px;
 }
 
-.project-info {
-    font-size: 0.9em;
-}
+
 
 /* calendar */
 

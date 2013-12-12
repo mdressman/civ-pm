@@ -48,15 +48,16 @@
 
 	<div class="tab-content">
 		
+		<!-- PHASES  -->
 		<% Milestone.select('distinct(phase)').each do |ph| %>
 		<div class="tab-pane" id="<%= ph.phase %><%= project.id %>">
-			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/milestones/complete/") do %>
+			
 			<%= render project.milestones.where('phase = "' + ph.phase + '"') %>
-			<%= submit_tag "Mark Complete", class: "client-button" %>
-			<% end %>
+			
 		</div>
 		<% end %>
 
+		<!-- ASSETS  -->
 		<div class="tab-pane" id="Assets<%= project.id %>">
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/assets/receive/") do %>
 		
@@ -66,6 +67,8 @@
 			<%= submit_tag "Mark Received", class: "client-button" %>
 			<% end %>
 		</div>
+		
+		<!-- DELIVERABLES -->
 		<div class="tab-pane" id="Deliverables<%= project.id %>">
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/deliverables/complete/") do %>
 		
