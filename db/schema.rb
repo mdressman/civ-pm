@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20131211194740) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
-    t.boolean  "received"
+    t.boolean  "received",      default: false
     t.string   "notes"
     t.datetime "expected_date"
     t.datetime "received_date"

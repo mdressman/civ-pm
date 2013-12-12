@@ -18,7 +18,11 @@ html {
 }
 
 body {
-    padding-top: 60px;
+    /*padding-top: 60px;*/
+}
+
+header {
+    padding: 20px 0 40px 0;
 }
 
 section {
@@ -111,18 +115,29 @@ input {
 
 /* header */
 
+ul.topnav {
+    float: right;
+    list-style: none;
+    li {
+        padding: 0 4px;
+        float: left;
+        a {
+
+        }
+    }
+
+}
+
 #logo {
     float: left;
     margin-right: 10px;
     font-size: 1.7em;
-    color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
     padding-top: 9px;
     font-weight: bold;
     line-height: 1;
     &:hover {
-      color: white;
       text-decoration: none;
     }
 }
@@ -203,17 +218,18 @@ footer {
     }
 }
 
-.client {
-    border-bottom: 1px solid $grayLight;
+.project {
     margin-bottom: 20px; 
-    margin-left: 0;
+    /*margin-left: 0;*/
 
-    &:first-child {
-        border-top: 1px solid $grayLight;
+    border-top: 1px solid #666;
+
+    &:first {
+        border-top: none;
     }
 }
 
-.milestones, .assets, .deliverables {
+ul.milestones, ul.assets, ul.deliverables {
     list-style: none;
     margin-left: 20px;
     li {
@@ -225,26 +241,34 @@ footer {
             border-bottom: 1px solid $grayLighter;
         }
 
-        &.complete, &.received {
-            text-decoration: line-through;
+        
+    }
+}
+
+.complete, .received {
+    text-decoration: line-through;
+}
+
+.phases { 
+    padding: 10px 0;
+    li {
+        a {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 4px 10px;
+            text-align: center;
+            border: 1px solid gray;
+            &:hover {
+                background: none;
+            }
         }
     }
 }
 
-.project-name {
-    font-weight: 700;
-    font-size: 16px;
-}
-
-.small-link {
+.utility-nav {
     font-size: 12px;
-}
-
-p.sub-head {
-    margin: 4px 0 0 10px;
-    font-style: italic;
-    font-size: 1em;
-    /*font-weight: bold;*/
+    float: right;
+    line-height: 34px;
 }
 
 .project-info {

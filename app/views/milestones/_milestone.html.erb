@@ -1,7 +1,8 @@
-<li class="<% if milestone.complete? %>complete<% end %>">
+<div class="span2 <% if milestone.complete? %>complete<% end %>">
+
 	<%= check_box_tag 'milestone_ids[]', milestone.id %>
 	<%= link_to milestone.name, client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, milestone) %> 
-	<% if milestone.estimated_date? %>
+	<!-- <% if milestone.estimated_date? %>
 		| <%= milestone.estimated_date.strftime('%m/%d/%Y') %>
 		<% if !milestone.complete %> |
 			<% if milestone.estimated_date >= DateTime.now %>upcoming: 
@@ -9,6 +10,6 @@
 			<% end %>
 			<strong><%= distance_of_time_in_words_to_now(milestone.estimated_date) %></strong>
 		<% end %>
-
 	<% end %>
-</li>
+-->
+</div>

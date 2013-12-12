@@ -1,10 +1,8 @@
-<div class="row client">
-	<h1><%= link_to client.name, client %> 
-		<span class="small-link"> | <%= link_to "New Project", new_client_project_path(:client_id => client.id), class: "client-button" %></span>
-	</h1>
-	
-	<div class="projects">
-	    <%= render client.projects %>
+<div class="row">
+	<div class="span12">
+		<div class="project">
+	    	<%= render client.projects %>
+	    </div>
+
 	</div>
-	
 </div>

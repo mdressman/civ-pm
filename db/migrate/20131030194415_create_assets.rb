@@ -2,7 +2,7 @@ class CreateAssets < ActiveRecord::Migration
   def change
     create_table :assets do |t|
       t.string :name
-      t.boolean :received
+      t.boolean :received, :default => false
       t.string :notes
       t.datetime :expected_date
       t.datetime :received_date

@@ -1,11 +1,20 @@
 <!-- <%= check_box_tag 'project_ids[]', project.id %> -->
 <h2>
+	<%= link_to project.client.name, client_path(project.client_id) %>
 	<%= link_to project.name, client_project_path(project.client_id, project) %>
-	<span class="small-link">| <%= link_to "New Milestone", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
-			</span>
+	<span class="utility-nav">	
+	<%= link_to "New Project", new_client_project_path(:client_id => project.client.id), class: "client-button" %>
+	| <%= link_to "New Milestone", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+	| <%= link_to "New Asset", new_client_project_asset_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+	| <%= link_to "New Deliverable", new_client_project_deliverable_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+	| <a href="#" class="collapse client-button">Collapse</a>
+	</span>
+
 </h2>
 
-<p>Next Milestone: <%= project.milestones.where(:complete => false).first.name %></p>
+<p>Next Milestone: <%= project.milestones.where(:complete => false).first.name if project.milestones.present? %></p>
+<p>Next Asset: <%= project.assets.where(:received => false).first.name if project.assets.present? %></p>
+<p>Next Deliverable: TODO</p>
 
 <% if project.end_date? %>
 	<span class="project-info">
@@ -19,56 +28,58 @@
 
 
 <div class="row">
-	<div class="span6">
 
-		<% if project.milestones.present? %>
+	<ul class="nav phases">
+
+		<% Milestone.select('distinct(phase)').each do |ph| %>
+		<li class="span2">
+			<a href="#<%= ph.phase %><%= project.id %>" data-target="#<%= ph.phase %><%= project.id %>" data-toggle="tab"><%= ph.phase %></a>
+		</li>
+		<% end %>
+		<li class="span2">
+			<a href="#Assets<%= project.id %>" data-target="#Assets<%= project.id %>" data-toggle="tab">Assets</a>
+		</li>
+		<li class="span2">
+			<a href="#Deliverables<%= project.id %>" data-target="#Deliverables<%= project.id %>" data-toggle="tab">Deliverables</a>
+		</li>
+
+
+	</ul>
+
+	<div class="tab-content">
+		
+		<% Milestone.select('distinct(phase)').each do |ph| %>
+		<div class="tab-pane" id="<%= ph.phase %><%= project.id %>">
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/milestones/complete/") do %>
-			
-			<% Milestone.select('distinct(phase)').each do |ph| %>
-			
-				<h3><%= ph.phase %></h3>
-	
-				<ul class="milestones">
-					<%= render project.milestones.where('phase = "' + ph.phase + '"') %>
-				</ul>
-			
-			<% end %>
-
+			<%= render project.milestones.where('phase = "' + ph.phase + '"') %>
 			<%= submit_tag "Mark Complete", class: "client-button" %>
 			<% end %>
+		</div>
 		<% end %>
 
-	</div>
-	<div class="span6">
-
-		<p class="sub-head">
-			Assets
-			<span class="small-link">| <%= link_to "New", new_client_project_asset_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
-			</span>
-		</p>
-		<% if project.assets.present? %>
+		<div class="tab-pane" id="Assets<%= project.id %>">
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/assets/receive/") do %>
-			
+		
 			<ul class="assets">
 				<%= render project.assets %>
 			</ul>
 			<%= submit_tag "Mark Received", class: "client-button" %>
 			<% end %>
-		<% end %>
-
-		<p class="sub-head">
-			Deliverables
-			<span class="small-link">| <%= link_to "New", new_client_project_deliverable_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
-			</span>
-		</p>
-		<% if project.deliverables.present? %>
+		</div>
+		<div class="tab-pane" id="Deliverables<%= project.id %>">
 			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/deliverables/complete/") do %>
-			
+		
 			<ul class="deliverables">
 				<%= render project.deliverables %>
 			</ul>
 			<%= submit_tag "Mark Complete", class: "client-button" %>
 			<% end %>
-		<% end %>
+		
+	
+		</div>
+
+
 	</div>
+
 </div>
+	

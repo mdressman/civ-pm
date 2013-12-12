@@ -34,7 +34,7 @@
         <%= collection_select(:manual_position, :id, Milestone.where('project_id = ' + params[:project_id]).all, :id, :name) %>
 
         <%= f.label :phase %>
-        <%= collection_select(:phase, :id, Milestone.select('DISTINCT(phase)'), :phase, :phase) %>
+        <%= collection_select(:milestone, :phase, Milestone.select('DISTINCT(phase)'), :phase, :phase) %>
 
         <%= f.submit "Create milestone", class: "btn btn-large btn-primary" %>
 
