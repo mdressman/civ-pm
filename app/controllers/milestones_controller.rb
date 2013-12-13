@@ -13,7 +13,9 @@ class MilestonesController < ApplicationController
         @milestone = Milestone.new(milestone_params)
         if @milestone.save 
   		    flash[:success] = "New milestone created."
-            @milestone.insert_at(Milestone.find(params[:manual_position]['id'].to_i).position)
+            if !params[:manual_position]['id'].blank?
+                @milestone.insert_at(Milestone.find(params[:manual_position]['id'].to_i).position)
+            end
   		    redirect_to root_url
         else
   		    render 'new'
@@ -26,7 +28,9 @@ class MilestonesController < ApplicationController
         @milestone = Milestone.find(params[:id])
         if @milestone.update_attributes(milestone_params)
             flash[:success] = "Milestone updated."
-            @milestone.insert_at(Milestone.find(params[:manual_position]['id'].to_i).position)
+            if !params[:manual_position]['id'].blank?
+                @milestone.insert_at(Milestone.find(params[:manual_position]['id'].to_i).position)
+            end
             redirect_to root_url
         else
             render 'edit'
@@ -57,7 +61,10 @@ class MilestonesController < ApplicationController
 
     def complete
         ms = Milestone.find(params[:id])
-        ms.update_attributes(:complete => !ms.complete)
+        ms.update_attributes(
+            :complete => !ms.complete,
+            :actual_date => DateTime.now
+            )
         flash[:success] = ms.name + " marked complete."
         redirect_to root_url
     end

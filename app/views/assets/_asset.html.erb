@@ -1,5 +1,13 @@
-<li class="<% if asset.received? %>complete<% end %>">
-	<%= check_box_tag 'asset_ids[]', asset.id %>
-	<%= link_to asset.name, client_project_asset_path(Project.find_by(asset.project_id).client_id, asset.project_id, asset) %>
-	<% if asset.received? %>| Received: <%= asset.received_date.strftime('%m/%d/%Y') %><% end %>
-</li>
+<div class="span2 <% if asset.received? %>complete<% end %>">
+	<div class="asset">
+		<p class="name"><%= link_to asset.name, client_project_asset_path(Project.find_by(asset.project_id).client_id, asset.project_id, asset) %></p>
+
+		<% if asset.received? %>
+		<p class="deadline">Received: <%= asset.received_date.strftime('%m/%d/%Y') %></p>
+		<% end %>
+		
+		<% if !asset.received %>
+		<p class="project-action"><%= link_to "Mark Received", receive_client_project_assets_path(Project.find_by(asset.project_id).client_id, asset.project_id, :id => asset.id), method: :post %></p>
+		<% end %>
+	</div>
+</div>

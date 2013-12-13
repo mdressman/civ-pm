@@ -12,9 +12,24 @@
 
 </h2>
 
-<p>Next Milestone: <%= project.milestones.where(:complete => false).first.name if project.milestones.present? %></p>
-<p>Next Asset: <%= project.assets.where(:received => false).first.name if project.assets.present? %></p>
-<p>Next Deliverable: TODO</p>
+<div class="project-info">
+	<span class="project-stats">
+		<p><span class="project-label">Estimated completion date:</span> <%= project.milestones.last.estimated_date.strftime('%m/%d/%Y') %></p>
+		<p><span class="project-label">Estimated hours remaining:</span> <%= project.milestones.where(:complete => false).sum('estimated_time') %></p>
+	</span>
+
+	<p><span class="project-label">Next Milestone:</span> 
+		<% if project.milestones.where(:complete => false).present? %>
+		<%= project.milestones.where(:complete => false).first.name %>, due <%= project.milestones.where(:complete => false).first.estimated_date.strftime('%m/%d/%Y') if project.milestones.where(:complete => false).first.estimated_date.present? %>
+		<% else %>
+		You're done!
+		<% end %>
+	</p>
+	<p><span class="project-label">Next Asset:</span> <%= project.assets.where(:received => false).first.name if project.assets.present? %></p>
+	<p><span class="project-label">Next Deliverable:</span> <%= project.deliverables.where(:complete => false).first.name if project.deliverables.present? %></p>
+
+
+</div>
 
 <% if project.end_date? %>
 	<span class="project-info">
@@ -31,16 +46,21 @@
 
 	<ul class="nav phases">
 
+		<!-- PHASES  -->
 		<% Milestone.select('distinct(phase)').each do |ph| %>
-		<li class="span2">
+		<li class="span2 <% if project.milestones.where(:complete => false, :phase => ph.phase).count == 0 %>phase-complete<% end %>">
 			<a href="#<%= ph.phase %><%= project.id %>" data-target="#<%= ph.phase %><%= project.id %>" data-toggle="tab"><%= ph.phase %></a>
 		</li>
 		<% end %>
+
+		<!-- ASSETS -->
 		<li class="span2">
-			<a href="#Assets<%= project.id %>" data-target="#Assets<%= project.id %>" data-toggle="tab">Assets</a>
+			<a class="no-border" href="#Assets<%= project.id %>" data-target="#Assets<%= project.id %>" data-toggle="tab">Assets</a>
 		</li>
+
+		<!-- DELIVERABLES -->
 		<li class="span2">
-			<a href="#Deliverables<%= project.id %>" data-target="#Deliverables<%= project.id %>" data-toggle="tab">Deliverables</a>
+			<a class="no-border" href="#Deliverables<%= project.id %>" data-target="#Deliverables<%= project.id %>" data-toggle="tab">Deliverables</a>
 		</li>
 
 
@@ -51,37 +71,20 @@
 		<!-- PHASES  -->
 		<% Milestone.select('distinct(phase)').each do |ph| %>
 		<div class="tab-pane" id="<%= ph.phase %><%= project.id %>">
-			
 			<%= render project.milestones.where('phase = "' + ph.phase + '"') %>
-			
 		</div>
 		<% end %>
 
 		<!-- ASSETS  -->
-		<div class="tab-pane" id="Assets<%= project.id %>">
-			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/assets/receive/") do %>
-		
-			<ul class="assets">
-				<%= render project.assets %>
-			</ul>
-			<%= submit_tag "Mark Received", class: "client-button" %>
-			<% end %>
+		<div class="tab-pane" id="Assets<%= project.id %>">	
+			<%= render project.assets %>
 		</div>
 		
 		<!-- DELIVERABLES -->
 		<div class="tab-pane" id="Deliverables<%= project.id %>">
-			<%= form_tag("/clients/" + project.client_id.to_s + "/projects/" + project.id.to_s + "/deliverables/complete/") do %>
-		
-			<ul class="deliverables">
-				<%= render project.deliverables %>
-			</ul>
-			<%= submit_tag "Mark Complete", class: "client-button" %>
-			<% end %>
-		
-	
+			<%= render project.deliverables %>
 		</div>
-
-
+		
 	</div>
 
 </div>

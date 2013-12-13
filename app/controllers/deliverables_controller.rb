@@ -52,6 +52,16 @@ class DeliverablesController < ApplicationController
     end
 
     def complete
+        dv = Deliverable.find(params[:id])
+        dv.update_attributes(
+            :complete => !dv.complete,
+            :completed_date => DateTime.now
+            )
+        flash[:success] = dv.name + " marked complete."
+        redirect_to root_url
+    end
+
+    def bulk_complete
         params[:deliverable_ids].each do |check|
             deliverable = Deliverable.find(check)
             deliverable.update_attributes(:complete => !deliverable.complete, :completed_date => DateTime.now)

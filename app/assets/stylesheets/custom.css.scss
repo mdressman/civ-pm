@@ -4,6 +4,8 @@
 
 $grayMediumLight: #eaeaea;
 $darkText: #333333;
+$black: #000000;
+$pink: #f2c2cf;
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -226,6 +228,17 @@ footer {
     }
 }
 
+.project-info {
+    font-size: 0.8em;
+    .project-label {
+        font-weight: 600;
+    }
+}
+
+.project-stats {
+    float: right;
+}
+
 ul.assets, ul.deliverables {
     list-style: none;
     margin-left: 20px;
@@ -242,47 +255,67 @@ ul.assets, ul.deliverables {
     }
 }
 
-.milestone {
+.milestone, .asset, .deliverable {
     padding: 10px 0;
 
-    p.ms-name {
+    .name {
         font-size: 0.9em;
         font-weight: 600;
         line-height: 12px;
         padding: 0 0 6px 0;
     }
 
-    p.ms-date {
+    .date {
         font-size: 0.9em;
     }
 
-    p.ms-deadline {
+    .deadline, .project-action {
         font-size: 0.8em;
         font-style: italic;
+    }
+
+    .project-action {
+
     }
 }
 
 .complete, .received {
-    text-decoration: line-through;
+    color: $pink;
+    a {
+        color: $pink;
+    }
 }
 
 .phases { 
-    padding: 10px 0;
+    padding: 12px 0;
     li {
         &.active {
             font-style: italic;
+            a {
+                border: 2px solid $black;
+            }
         }
         a {
             font-size: 16px;
             font-weight: 700;
             padding: 4px 10px;
             text-align: center;
-            border: 1px solid gray;
+            border: 1px solid $black;
             &:hover {
                 background: none;
             }
+
+            &.no-border {
+                border: none;
+            }
+
+
         }
     }
+}
+
+.phase-complete {
+    background: $pink;
 }
 
 .utility-nav {

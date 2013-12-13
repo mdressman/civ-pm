@@ -1,5 +1,13 @@
-<li class="<% if deliverable.complete? %>complete<% end %>">
-	<%= check_box_tag 'deliverable_ids[]', deliverable.id %>
-	<%= link_to deliverable.name, client_project_deliverable_path(Project.find_by(deliverable.project_id).client_id, deliverable.project_id, deliverable) %>
-	<% if deliverable.complete? %>| Received: <%= deliverable.completed_date.strftime('%m/%d/%Y') %><% end %>
-</li>
+<div class="span2 <% if deliverable.complete? %>complete<% end %>">
+	<div class="deliverable">
+		<p class="name"><%= link_to deliverable.name, client_project_deliverable_path(Project.find_by(deliverable.project_id).client_id, deliverable.project_id, deliverable) %></p>
+
+		<% if deliverable.complete? %>
+		<p class="deadline">Completed: <%= deliverable.completed_date.strftime('%m/%d/%Y') %></p>
+		<% end %>
+
+		<% if !deliverable.complete %>
+		<p class="project-action"><%= link_to "Mark Complete", complete_client_project_deliverables_path(Project.find_by(deliverable.project_id).client_id, deliverable.project_id, :id => deliverable.id), method: :post %></p>
+		<% end %>
+	</div>
+</div>

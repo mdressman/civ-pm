@@ -52,6 +52,16 @@ class AssetsController < ApplicationController
     end
 
     def receive
+        as = Asset.find(params[:id])
+        as.update_attributes(
+            :received => !as.received,
+            :received_date => DateTime.now
+            )
+        flash[:success] = as.name + " received."
+        redirect_to root_url
+    end
+
+    def bulk_receive
         params[:asset_ids].each do |check|
             asset = Asset.find(check)
             asset.update_attributes(:received => !asset.received, :received_date => DateTime.now)

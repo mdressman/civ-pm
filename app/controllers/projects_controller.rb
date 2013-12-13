@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
   		    flash[:success] = "New project created."
             create_milestones
             create_assets
+            create_deliverables
             redirect_to root_url
         else
   		    render 'new'

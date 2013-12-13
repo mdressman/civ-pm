@@ -2,7 +2,7 @@ class CreateDeliverables < ActiveRecord::Migration
   def change
     create_table :deliverables do |t|
       t.string :name
-      t.boolean :complete
+      t.boolean :complete, :default => :false
       t.datetime :completed_date
       t.integer :user_id
       t.string :notes
