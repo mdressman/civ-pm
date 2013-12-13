@@ -1,7 +1,9 @@
 <!-- <%= check_box_tag 'project_ids[]', project.id %> -->
 <h2>
-	<%= link_to project.client.name, client_path(project.client_id) %>
-	<%= link_to project.name, client_project_path(project.client_id, project) %>
+	<%# link_to project.client.name, client_path(project.client_id) %>
+	<%# link_to project.name, client_project_path(project.client_id, project) %>
+	<%= project.client.name %>
+	<%= project.name %>
 	<span class="utility-nav">	
 	<%= link_to "New Project", new_client_project_path(:client_id => project.client.id), class: "client-button" %>
 	| <%= link_to "New Milestone", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
@@ -26,7 +28,7 @@
 		<% end %>
 	</p>
 	<p><span class="project-label">Next Asset:</span> <%= project.assets.where(:received => false).first.name if project.assets.present? %></p>
-	<p><span class="project-label">Next Deliverable:</span> <%= project.deliverables.where(:complete => false).first.name if project.deliverables.present? %></p>
+	<p><span class="project-label">Next Deliverable:</span> <%= project.deliverables.where(:complete => false).first.name %></p>
 
 
 </div>
@@ -47,7 +49,7 @@
 	<ul class="nav phases">
 
 		<!-- PHASES  -->
-		<% Milestone.select('distinct(phase)').each do |ph| %>
+		<% project.milestones.select('distinct(phase)').each do |ph| %>
 		<li class="span2 <% if project.milestones.where(:complete => false, :phase => ph.phase).count == 0 %>phase-complete<% end %>">
 			<a href="#<%= ph.phase %><%= project.id %>" data-target="#<%= ph.phase %><%= project.id %>" data-toggle="tab"><%= ph.phase %></a>
 		</li>

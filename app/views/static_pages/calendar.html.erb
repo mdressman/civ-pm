@@ -1,10 +1,55 @@
 <% provide(:title, 'Calendar') %>
-<h1>Calendar</h1>
+<div id="calendar-page">
+	<h1>Calendar</h1>
 
-<%= calendar @events do |event| %>
-	<% if event.class.name == "Milestone" %>
-  		<div><%= link_to "[" + Client.find(event.client_id).name + "] (" + Project.find(event.project_id).name + ") " + event.name, client_project_milestone_path(Project.find(event.project_id).client_id, event.project_id, event) %></div>
-  	<% else %>
-  		<div><%= link_to "[" + Client.find(event.client_id).name + "] " + event.name, client_project_path(event.client_id, event) %></div>
-  	<% end %>
-<% end %>
+	<%
+		weeks = [DateTime.now]
+		[1,2,3].each do |n|
+			weeks << DateTime.now + n.week
+		end
+	 	weeks.each do |week| 
+	%>
+
+	<div class="row">
+		<div class="span12 week-view">
+
+			<h2><%= week.beginning_of_week.strftime('%m/%d/%Y') %> – <%= week.end_of_week(start_day=:saturday).strftime('%m/%d/%Y') %></h2>
+			<p>Total Hours Estimated: <%= Milestone.where("estimated_date <= ? AND estimated_date >= ?", week.end_of_week(start_day=:saturday), week.beginning_of_week).sum(:estimated_time) %></p>
+
+
+			<ul class="week-milestones">
+
+			<% 
+				week_milestones = Milestone.where("estimated_date <= ? AND estimated_date >= ?", week.end_of_week(start_day=:saturday), week.beginning_of_week) 
+				week_milestones.each do |wms|
+
+				
+			%>
+				<li><%= link_to "[" + Client.find(wms.client_id).name + "] (" + Project.find(wms.project_id).name + ") " + wms.name, client_project_milestone_path(Project.find(wms.project_id).client_id, wms.project_id, wms) %></li>
+
+				
+				
+			<% end %>
+
+			</ul>
+
+
+
+
+		</div>
+	</div>
+
+	<% end %>
+
+
+	<h2 class="calendar-heading">Normal Month Calendar</h2>
+	<p>Ideally, it will be possible to subscribe to this calendar view in your personal Google Calendar if you'd like.</p>
+
+	<%= calendar @events do |event| %>
+		<% if event.class.name == "Milestone" %>
+	  		<div><%= link_to "[" + Client.find(event.client_id).name + "] (" + Project.find(event.project_id).name + ") " + event.name, client_project_milestone_path(Project.find(event.project_id).client_id, event.project_id, event) %></div>
+	  	<% else %>
+	  		<div><%= link_to "[" + Client.find(event.client_id).name + "] " + event.name, client_project_path(event.client_id, event) %></div>
+	  	<% end %>
+	<% end %>
+</div>

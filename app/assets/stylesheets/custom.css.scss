@@ -239,7 +239,7 @@ footer {
     float: right;
 }
 
-ul.assets, ul.deliverables {
+ul.assets, ul.deliverables, ul.week-milestones {
     list-style: none;
     margin-left: 20px;
     li {
@@ -328,5 +328,16 @@ ul.assets, ul.deliverables {
 
 /* calendar */
 
+#calendar-page h2 {
+    font-size: 1.3em;
+}
+
+.calendar-heading { margin-top: 80px;}
 .calendar td { height: 100px; width: 14.28%; }
+
+.week-view {
+    border: 1px solid $black;
+    padding: 40px 4px;
+    margin-bottom: 10px;
+}
 

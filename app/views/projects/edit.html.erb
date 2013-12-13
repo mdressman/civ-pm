@@ -8,8 +8,8 @@
 
       <%= f.hidden_field :client_id, :value => params[:client_id] %>
 
-      <%= f.label :type, "Name" %>
-      <%= select(:project, :project_type, options_for_select( [ ['Interface Design','Interface Design'], ['Web Development','Web Development'], ['Branding','Branding'], ['Print Design','Print Design'], ['Custom','Custom'] ]), {:prompt => '-- Choose --'} ) %>
+      <%= f.label :project_type, "Name" %>
+      <%= select(:project, :project_type, options_for_select( [ ['Branding 1','Branding 1'], ['Branding 2','Branding 2'], ['Print','Print'], ['Web Design 1','Web Design 1'], ['Web Design 2','Web Design 2'], ['Web Development 1','Web Development 1'], ['Web Development 2','Web Development 2'], ['Custom','Custom'] ]), {:prompt => '-- Choose --'} ) %>
 
       <%= f.text_field :name %>
 

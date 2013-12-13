@@ -39,12 +39,13 @@ ActiveRecord::Schema.define(version: 20131211194740) do
 
   create_table "deliverables", force: true do |t|
     t.string   "name"
-    t.boolean  "complete"
+    t.boolean  "complete",       default: false
     t.datetime "completed_date"
     t.integer  "user_id"
     t.string   "notes"
     t.integer  "project_id"
     t.string   "link"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
