@@ -257,6 +257,7 @@ ul.assets, ul.deliverables, ul.week-milestones {
 
 .milestone, .asset, .deliverable {
     padding: 10px 0;
+    min-height: 117px;
 
     .name {
         font-size: 0.9em;

@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 	has_many :assets, dependent: :destroy
     has_many :deliverables, dependent: :destroy
 	belongs_to :client
+    belongs_to :user
 	# validates :name, presence: true
 
     scope :with_end, where("end_date IS NOT NULL")

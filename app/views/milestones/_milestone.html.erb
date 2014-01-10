@@ -13,6 +13,7 @@
 				</p>
 			<% end %>
 		<% end %>
+		<p class="deadline"><%= milestone.estimated_time %> hours</p>
 		<% if !milestone.complete %>
 		<p class="project-action"><%= link_to "Mark Complete", complete_client_project_milestones_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, :id => milestone.id), method: :post %></p>
 		<% end %>
