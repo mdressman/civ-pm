@@ -11,9 +11,9 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem "simple_calendar", github: "excid3/simple_calendar", branch: "master"  # 1.0
 gem 'jquery-turbolinks'
 gem 'acts_as_list'
+gem 'pg'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
   # The following optional lines are part of the advanced setup.
   # gem 'guard-rspec', '2.5.0'
@@ -53,6 +53,5 @@ group :doc do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end

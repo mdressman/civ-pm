@@ -1,0 +1,5 @@
+LOG:  database system was shut down at 2014-01-22 13:41:45 PST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  database "pm_development" already exists
+STATEMENT:  CREATE DATABASE "pm_development" ENCODING = 'unicode'

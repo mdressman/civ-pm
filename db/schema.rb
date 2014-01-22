@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140107003655) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assets", force: true do |t|
     t.string   "name"
     t.boolean  "received",      default: false
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20140107003655) do
     t.string   "phase"
   end
 
-  add_index "milestones", ["client_id"], name: "index_milestones_on_client_id"
-  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id"
+  add_index "milestones", ["client_id"], name: "index_milestones_on_client_id", using: :btree
+  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.integer  "client_id"
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140107003655) do
     t.string   "category"
   end
 
-  add_index "projects", ["project_type"], name: "index_projects_on_project_type"
+  add_index "projects", ["project_type"], name: "index_projects_on_project_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 20140107003655) do
     t.boolean  "admin",           default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end
