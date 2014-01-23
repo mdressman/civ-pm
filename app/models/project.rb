@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-    has_many :milestones, -> { order "position ASC" }, dependent: :destroy
+    has_many :milestones, dependent: :destroy #  -> { order "position ASC" },
 	has_many :assets, dependent: :destroy
     has_many :deliverables, dependent: :destroy
 	belongs_to :client

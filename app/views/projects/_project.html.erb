@@ -49,9 +49,10 @@
 	<ul class="nav phases">
 
 		<!-- PHASES  -->
-		<% project.milestones.select('distinct(phase), position').each do |ph| %>
-		<li class="span2 <% if project.milestones.where(:complete => false, :phase => ph.phase).count == 0 %>phase-complete<% end %>">
-			<a href="#<%= ph.phase %><%= project.id %>" data-target="#<%= ph.phase %><%= project.id %>" data-toggle="tab"><%= ph.phase %></a>
+		<% phases = ['Discovery','Design','Refine','Finalize'] %>
+		<% phases.each do |ph| %>
+		<li class="span2 <% if project.milestones.where(:complete => false, :phase => ph).count == 0 %>phase-complete<% end %>">
+			<a href="#<%= ph %><%= project.id %>" data-target="#<%= ph %><%= project.id %>" data-toggle="tab"><%= ph %></a>
 		</li>
 		<% end %>
 
@@ -73,7 +74,7 @@
 		<!-- PHASES  -->
 		<% Milestone.select('distinct(phase)').each do |ph| %>
 		<div class="tab-pane" id="<%= ph.phase %><%= project.id %>">
-			<%= render project.milestones.where('phase = "' + ph.phase + '"') %>
+			<%= render project.milestones.where('phase = ?', ph.phase) %>
 		</div>
 		<% end %>
 

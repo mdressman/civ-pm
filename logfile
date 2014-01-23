@@ -3,3 +3,107 @@ LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 ERROR:  database "pm_development" already exists
 STATEMENT:  CREATE DATABASE "pm_development" ENCODING = 'unicode'
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  for SELECT DISTINCT, ORDER BY expressions must appear in select list at character 90
+STATEMENT:  SELECT distinct(phase) FROM "milestones"  WHERE "milestones"."project_id" = $1  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+FATAL:  database "md" does not exist
+ERROR:  syntax error at or near "select" at character 21
+STATEMENT:  SELECT * FROM users
+	select id from users
+	select id from clients;
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  syntax error at or near "select" at character 24
+STATEMENT:  select id from clients
+	select * from users
+	select * from users
+	select * from users
+	select * from users;
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Design" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Design")  ORDER BY position ASC
+ERROR:  column "Design" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Design")  ORDER BY position ASC
+ERROR:  column "design" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = Design)  ORDER BY position ASC
+ERROR:  column "design" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = Design)  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 94
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND ("phase" = "Refine")  ORDER BY position ASC
+ERROR:  column "refine" does not exist at character 94
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND ("phase" = Refine)  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 94
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND ("phase" = "Refine")  ORDER BY position ASC
+ERROR:  syntax error at or near "\" at character 94
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND ("phase" = \"Refine\")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 94
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND ("phase" = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  syntax error at or near "SELECT" at character 26
+STATEMENT:  SELECT * FROM milestones
+	SELECT * FROM milestones;
+ERROR:  syntax error at or near "SELECT" at character 21
+STATEMENT:  SELECT * FROM users
+	SELECT * FROM milestones
+	SELECT * FROM milestones;
+ERROR:  column "Refine" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "Refine")  ORDER BY position ASC
+ERROR:  column "'Refine'" does not exist at character 92
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "'Refine'")  ORDER BY position ASC
+ERROR:  syntax error at or near "SELECT" at character 127
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = $1 AND (phase = "'Refine'")  ORDER BY position ASC
+	SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = 1 AND (phase = "'Refine'")  ORDER BY position ASC
+	SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = 1 AND (phase = "'Refine'")  ORDER BY position ASC;
+ERROR:  column "'Refine'" does not exist at character 91
+STATEMENT:  SELECT "milestones".* FROM "milestones"  WHERE "milestones"."project_id" = 1 AND (phase = "'Refine'")  ORDER BY position ASC;
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  argument of WHERE must be type boolean, not type integer at character 46
+STATEMENT:  SELECT  "projects".* FROM "projects"  WHERE (1) LIMIT 1
+ERROR:  for SELECT DISTINCT, ORDER BY expressions must appear in select list at character 90
+STATEMENT:  SELECT distinct(phase) FROM "milestones"  WHERE "milestones"."project_id" = $1  ORDER BY position ASC
+ERROR:  for SELECT DISTINCT, ORDER BY expressions must appear in select list at character 89
+STATEMENT:  SELECT DISTINCT phase FROM "milestones"  WHERE "milestones"."project_id" = $1  ORDER BY position ASC
+ERROR:  for SELECT DISTINCT, ORDER BY expressions must appear in select list at character 89
+STATEMENT:  SELECT DISTINCT phase FROM "milestones"  WHERE "milestones"."project_id" = $1  ORDER BY position ASC
+ERROR:  for SELECT DISTINCT, ORDER BY expressions must appear in select list at character 90
+STATEMENT:  SELECT distinct(phase) FROM "milestones"  WHERE "milestones"."project_id" = $1  ORDER BY position ASC
+ERROR:  for SELECT DISTINCT, ORDER BY expressions must appear in select list at character 90
+STATEMENT:  SELECT distinct(phase) FROM "milestones"  WHERE "milestones"."project_id" = $1  ORDER BY position ASC

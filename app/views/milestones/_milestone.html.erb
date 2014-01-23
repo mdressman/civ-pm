@@ -1,7 +1,7 @@
 <div class="span2 <% if milestone.complete? %>complete<% end %>">
 	<div class="milestone">
 
-		<p class="name"><%= link_to milestone.name, client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, milestone) %></p>
+		<p class="name"><%= link_to milestone.name, client_project_milestone_path(Project.find(milestone.project_id).client_id, milestone.project_id, milestone) %></p>
 		<% if milestone.estimated_date? %>
 			<p class="date"><%= milestone.estimated_date.strftime('%m/%d/%Y') %></p>
 			<% if !milestone.complete %>
@@ -15,9 +15,9 @@
 		<% end %>
 		<p class="deadline"><%= milestone.estimated_time %> hours</p>
 		<% if !milestone.complete %>
-		<p class="project-action"><%= link_to "Mark Complete", complete_client_project_milestones_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, :id => milestone.id), method: :post %></p>
+		<p class="project-action"><%= link_to "Mark Complete", complete_client_project_milestones_path(Project.find(milestone.project_id).client_id, milestone.project_id, :id => milestone.id), method: :post %></p>
 		<% end %>
-		<p class="project-action"><%= link_to "Edit", edit_client_project_milestone_path(Project.find_by(milestone.project_id).client_id, milestone.project_id, :id => milestone.id) %></p>
+		<p class="project-action"><%= link_to "Edit", edit_client_project_milestone_path(Project.find(milestone.project_id).client_id, milestone.project_id, :id => milestone.id) %></p>
 
 	</div>
 </div>
