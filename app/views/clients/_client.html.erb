@@ -1,6 +1,13 @@
 <div class="row">
 	<div class="span12">
 		<div class="project">
+			<h2>
+				<%= client.name %>
+				<span class="utility-nav">	
+				<%= link_to "New Project", new_client_project_path(:client_id => client.id), class: "client-button" %>
+				| <%= link_to "Delete Client", client_path(:id => client.id), :confirm => 'Are you sure?', :method => :delete, class: "client-button" %>
+				</span>
+			</h2>
 	    	<%= render client.projects %>
 	    </div>
 

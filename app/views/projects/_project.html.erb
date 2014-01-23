@@ -1,18 +1,17 @@
 <!-- <%= check_box_tag 'project_ids[]', project.id %> -->
-<h2>
+<h3>
 	<%# link_to project.client.name, client_path(project.client_id) %>
 	<%# link_to project.name, client_project_path(project.client_id, project) %>
-	<%= project.client.name %>
 	<%= project.name %>
 	<span class="utility-nav">	
-	<%= link_to "New Project", new_client_project_path(:client_id => project.client.id), class: "client-button" %>
-	| <%= link_to "New Milestone", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
+	<%= link_to "New Milestone", new_client_project_milestone_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
 	| <%= link_to "New Asset", new_client_project_asset_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
 	| <%= link_to "New Deliverable", new_client_project_deliverable_path(:client_id => project.client_id, :project_id => project.id), class: "client-button" %>
 	| <a href="#" class="collapse client-button">Collapse</a>
+	| <%= link_to "Delete Project", client_project_path(:client_id => project.client_id, :id => project.id), :confirm => 'Are you sure?', :method => :delete, class: "client-button" %>
 	</span>
 
-</h2>
+</h3>
 
 <div class="project-info">
 	<span class="project-stats">
